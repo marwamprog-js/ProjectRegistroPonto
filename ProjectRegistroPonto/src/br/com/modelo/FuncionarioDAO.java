@@ -12,7 +12,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
- * @author Eduardo
+ *. @author Eduardo
  */
 public class FuncionarioDAO {
     Session session;
