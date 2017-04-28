@@ -1,6 +1,7 @@
 
 package br.com.modelo;
 
+import br.com.entidade.Funcionario;
 import br.com.registro.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class FuncionarioDAO {
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.salve(funcionario);
+            session.save(funcionario);
             session.getTransaction().commit();
             return true;
         }catch(HibernateException e){
@@ -35,7 +36,7 @@ public class FuncionarioDAO {
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.delete(fucionario);
+            session.delete(funcionario);
             session.getTransaction().commit();
             return true;
         }catch(HibernateException e){
