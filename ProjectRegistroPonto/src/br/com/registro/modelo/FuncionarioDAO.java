@@ -1,7 +1,7 @@
 
-package br.com.modelo;
+package br.com.registro.modelo;
 
-import br.com.entidade.Funcionario;
+import br.com.registro.entidade.Funcionario;
 import br.com.registro.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;

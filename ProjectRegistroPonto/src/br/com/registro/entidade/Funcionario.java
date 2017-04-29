@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.entidade;
+package br.com.registro.entidade;
 
 import java.util.Date;
 import java.util.List;

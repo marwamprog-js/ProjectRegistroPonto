@@ -5,6 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>ProjectRegistroPonto</name>
             <source-roots>
+                <root id="src.img.dir"/>
                 <root id="src.Instrucao.dir"/>
                 <root id="src.dir"/>
             </source-roots>

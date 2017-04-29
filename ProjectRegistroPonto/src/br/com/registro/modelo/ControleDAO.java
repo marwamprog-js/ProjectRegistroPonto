@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.modelo;
+package br.com.registro.modelo;
 
-import br.com.entidade.Controle;
-import br.com.entidade.Funcionario;
+import br.com.registro.entidade.Controle;
+import br.com.registro.entidade.Funcionario;
 import br.com.registro.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Date;
