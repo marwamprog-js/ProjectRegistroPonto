@@ -7,6 +7,7 @@ package br.com.entidade;
 
 import java.sql.Time;
 import java.util.Date;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,8 +23,13 @@ public class Controle {
    private Time horaRetornoAlmoco;
    private Date data;
    private String status;
+   
+   @ManyToOne(targetEntity = Funcionario.class)
+   private Funcionario funcionario;
 
-    public Long getIdControle() {
+    
+   
+   public Long getIdControle() {
         return idControle;
     }
 
