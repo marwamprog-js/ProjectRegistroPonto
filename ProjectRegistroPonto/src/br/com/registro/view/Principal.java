@@ -5,6 +5,9 @@
  */
 package br.com.registro.view;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 /**
  *
  * @author user_mw
@@ -37,7 +40,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItemTelaHora = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemPonto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -138,10 +141,15 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu1.add(jMenu3);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Ponto");
-        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu1.add(jMenuItem1);
+        jMenuItemPonto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemPonto.setText("Ponto");
+        jMenuItemPonto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItemPonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPontoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemPonto);
 
         jMenuBar1.add(jMenu1);
 
@@ -203,6 +211,16 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItemPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPontoActionPerformed
+        // TODO add your handling code here:
+        
+        RegistroPonto ponto = new RegistroPonto();
+        jDesktopPane1.add(ponto);
+        
+        ponto.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItemPontoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,6 +255,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    //=======================================================================================
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -245,12 +269,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItemPonto;
     private javax.swing.JMenuItem jMenuItemTelaHora;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

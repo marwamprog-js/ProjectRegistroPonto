@@ -68,6 +68,7 @@ public class FuncionarioDAO {
         listaFuncionario = criterio.list();
         return  listaFuncionario();
     }
+    
     public List<Funcionario> pesquisaPorCodigoFuncionario(Long codigo){
         List<Funcionario> listaFuncionarioCodigo = new ArrayList<>();
         session = HibernateUtil.getSessionFactory().openSession();
