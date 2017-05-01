@@ -9,12 +9,12 @@ package br.com.registro.view;
  *
  * @author user_mw
  */
-public class Horas extends javax.swing.JInternalFrame {
+public class RegistroPonto extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Horas
+     * Creates new form RegistroPonto
      */
-    public Horas() {
+    public RegistroPonto() {
         initComponents();
     }
 
