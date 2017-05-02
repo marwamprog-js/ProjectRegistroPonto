@@ -6,30 +6,37 @@
 package br.com.registro.entidade;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
  *
  * @author JORDAN - PC
  */
+
+@Entity
 public class Controle {
 
 
-    
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
    private Long idControle;
-   private Time horaEntrada;
-   private Time horaAlmoco;
-   private Time horaRetornoAlmoco;
+   private Date horaEntrada;
+   private Date horaAlmoco;
+   private Date horaRetornoAlmoco;
+   private Date horaSaida;
    private Date data;
    private String status;
    
    @ManyToOne(targetEntity = Funcionario.class)
    private Funcionario funcionario;
 
-    
-   
-   public Long getIdControle() {
+    public Long getIdControle() {
         return idControle;
     }
 
@@ -37,28 +44,36 @@ public class Controle {
         this.idControle = idControle;
     }
 
-    public Time getHoraEntrada() {
+    public Date getHoraEntrada() {
         return horaEntrada;
     }
 
-    public void setHoraEntrada(Time horaEntrada) {
+    public void setHoraEntrada(Date horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
 
-    public Time getHoraAlmoco() {
+    public Date getHoraAlmoco() {
         return horaAlmoco;
     }
 
-    public void setHoraAlmoco(Time horaAlmoco) {
+    public void setHoraAlmoco(Date horaAlmoco) {
         this.horaAlmoco = horaAlmoco;
     }
 
-    public Time getHoraRetornoAlmoco() {
+    public Date getHoraRetornoAlmoco() {
         return horaRetornoAlmoco;
     }
 
-    public void setHoraRetornoAlmoco(Time horaRetornoAlmoco) {
+    public void setHoraRetornoAlmoco(Date horaRetornoAlmoco) {
         this.horaRetornoAlmoco = horaRetornoAlmoco;
+    }
+
+    public Date getHoraSaida() {
+        return horaSaida;
+    }
+
+    public void setHoraSaida(Date horaSaida) {
+        this.horaSaida = horaSaida;
     }
 
     public Date getData() {
@@ -76,12 +91,18 @@ public class Controle {
     public void setStatus(String status) {
         this.status = status;
     }
-  
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    
    
-    
-    
-    
-    
+      
     
     
     

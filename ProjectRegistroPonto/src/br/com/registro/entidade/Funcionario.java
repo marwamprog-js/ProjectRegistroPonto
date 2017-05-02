@@ -7,15 +7,22 @@ package br.com.registro.entidade;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 /**
  *
  * @author user_mw
  */
+
+@Entity
 public class Funcionario {
     
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idFuncionario;
     private String nome;
     private String cargo;
@@ -24,12 +31,18 @@ public class Funcionario {
     private String rua;
     private int numero;
     private String bairro;
+    private String cidade;
     private String descricao;
     private String senha;
     private Date data;
     
     @OneToMany(targetEntity = Controle.class)
     private List<Controle> listaSetores;
+
+    @Override
+    public String toString() {
+        return "Funcionario{" + "nome=" + nome + '}';
+    }
 
     
     
@@ -127,6 +140,14 @@ public class Funcionario {
 
     public void setListaSetores(List<Controle> listaSetores) {
         this.listaSetores = listaSetores;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
     
     

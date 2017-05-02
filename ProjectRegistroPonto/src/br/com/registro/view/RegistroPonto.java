@@ -5,6 +5,7 @@
  */
 package br.com.registro.view;
 
+import br.com.registro.entidade.Controle;
 import br.com.registro.entidade.Funcionario;
 import br.com.registro.modelo.ControleDAO;
 import br.com.registro.modelo.FuncionarioDAO;
@@ -12,9 +13,15 @@ import br.com.registro.util.HoraUtil;
 import br.com.registro.util.SoNumerosUtil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -50,6 +57,7 @@ public class RegistroPonto extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextFieldCodigoFuncionario = new javax.swing.JTextField();
         jButtonRegistrar = new javax.swing.JButton();
+        jLabelMessageErro = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -76,6 +84,8 @@ public class RegistroPonto extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabelMessageErro.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -87,7 +97,8 @@ public class RegistroPonto extends javax.swing.JInternalFrame {
                     .addComponent(jLabelData, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldCodigoFuncionario)
-                    .addComponent(jButtonRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelMessageErro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonRegistrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -101,9 +112,11 @@ public class RegistroPonto extends javax.swing.JInternalFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldCodigoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelMessageErro, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,79 +135,107 @@ public class RegistroPonto extends javax.swing.JInternalFrame {
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         // TODO add your handling code here:
-        
+
         Funcionario funcionario = new Funcionario();
+        Controle controle = new Controle();
         FuncionarioDAO daoFunc = new FuncionarioDAO();
         ControleDAO dao = new ControleDAO();
-        
-        if(jTextFieldCodigoFuncionario.getText().isEmpty()){
-            
-            JOptionPane.showMessageDialog(null, "Insira o código do funcionário", "Atetnção", JOptionPane.ERROR);
-            
-        }else {
-            
-             funcionario.setIdFuncionario(Long.parseLong(jTextFieldCodigoFuncionario.getText()));
-            
+
+        jLabelMessageErro.setText("");
+
+        if (jTextFieldCodigoFuncionario.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Insira o código do funcionário", "Atetnção", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+
+            funcionario.setIdFuncionario(Long.parseLong(jTextFieldCodigoFuncionario.getText()));
+
             long idFunc = 0;
-            
-            for(Funcionario func : daoFunc.pesquisaPorCodigoFuncionario(funcionario.getIdFuncionario())){
-                
+
+            List<Funcionario> listaFuncionario = daoFunc.pesquisaPorCodigoFuncionario(funcionario.getIdFuncionario());
+
+            for (Funcionario func : listaFuncionario) {
+
                 idFunc = func.getIdFuncionario();
-                
+
             }
+
+            if (idFunc != funcionario.getIdFuncionario()) {
+
+                jLabelMessageErro.setText("Funcionário não cadastrado");
+
+            } else {
+
+                for (Funcionario func : listaFuncionario) {
+
+                    funcionario.setNome(func.getNome());
+                    funcionario.setCargo(func.getCargo());
+                    funcionario.setSetor(func.getSetor());
+                    funcionario.setTelefoneCelular(func.getTelefoneCelular());
+                    funcionario.setRua(func.getRua());
+                    funcionario.setNumero(func.getNumero());
+                    funcionario.setBairro(func.getBairro());
+                    funcionario.setCidade(func.getCidade());
+                    funcionario.setDescricao(func.getDescricao());
+                    funcionario.setData(func.getData());
+                    funcionario.setSenha(func.getSenha());
+
+                }
+
+                controle.setFuncionario(funcionario);
                 
-            if(idFunc != funcionario.getIdFuncionario()){
+                Date data = new Date();
                 
-                JOptionPane.showMessageDialog(null, "Funcionário não cadastrado", "Atenção", JOptionPane.ERROR_MESSAGE);
+               controle.setHoraEntrada(data);
+               controle.setHoraAlmoco(data);
+               controle.setHoraRetornoAlmoco(data);
+               controle.setHoraSaida(data);          
+               controle.setData(data);
+               controle.setStatus("");
+               
+               dao.savar(controle);
+               
+
                 
+                
+
             }
-                
-            
-            
+
         }
-            
-        
+
+
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
-    
     //============================================================================
-    
-    
-    public void data(){
-        
+    public void data() {
+
         Date data = new Date();
         DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
         jLabelData.setText(formatador.format(data));
-        
+
         jLabelData.setHorizontalAlignment(javax.swing.JLabel.CENTER);
-        
+
     }
-    
-    
-    public void hora(){
-        
+
+    public void hora() {
+
         Timer hora = new Timer(1000, new HoraUtil());
         hora.start();
-        
+
         jLabelHora.setHorizontalAlignment(javax.swing.JLabel.CENTER);
-        
+
     }
-    
-    
 
-
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRegistrar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelData;
     public static javax.swing.JLabel jLabelHora;
+    private javax.swing.JLabel jLabelMessageErro;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldCodigoFuncionario;
     // End of variables declaration//GEN-END:variables
 
-    
-    
 }
