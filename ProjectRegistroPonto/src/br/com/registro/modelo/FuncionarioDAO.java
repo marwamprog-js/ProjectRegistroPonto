@@ -79,4 +79,37 @@ public class FuncionarioDAO {
         return listaFuncionarioCodigo;
     }
     
+    
+     public boolean validaLogin(String senha, String login){
+         
+         session = HibernateUtil.getSessionFactory().openSession();
+         session.beginTransaction();
+         
+         Criteria crit = session.createCriteria(Funcionario.class);
+         crit.add(Restrictions.like("usuario", login));
+         crit.add(Restrictions.like("senha",senha));
+         
+                
+             return true;
+         
+     }
+     
+     
+     public List<Funcionario> identificaUsuario(String login,String senha, String setor){
+         
+         List<Funcionario> listaFuncionario = new ArrayList<>();
+         
+         session = HibernateUtil.getSessionFactory().openSession();
+         session.beginTransaction();
+         
+         Criteria crit = session.createCriteria(Funcionario.class);
+         crit.add(Restrictions.like("usuario", login));
+         crit.add(Restrictions.like("senha",senha)); 
+         crit.add(Restrictions.ilike("setor",setor));
+         listaFuncionario = crit.list();
+         
+         return listaFuncionario;
+     }
+  
+        
 }
