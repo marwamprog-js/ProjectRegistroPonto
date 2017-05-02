@@ -33,6 +33,18 @@ public class Funcionario {
     private String bairro;
     private String cidade;
     private String descricao;
+    private String usuario;
+    
+    
+    
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
     private String senha;
     private Date data;
     
