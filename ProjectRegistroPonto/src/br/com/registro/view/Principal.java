@@ -77,8 +77,6 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 522, Short.MAX_VALUE)
         );
 
-        jDesktopPane1.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
@@ -95,6 +93,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
+        jDesktopPane1.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setText("ALT+F4 - SAIR");
 
@@ -121,17 +120,22 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Telas do Sistema");
-        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jMenu3.setText("Cadastros");
-        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jMenuItem2.setText("Funcioanário");
-        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItem2.setText("Funcionário");
+        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem2);
 
         jMenuItemTelaHora.setText("Horas");
-        jMenuItemTelaHora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItemTelaHora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuItemTelaHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemTelaHoraActionPerformed(evt);
@@ -143,7 +147,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItemPonto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemPonto.setText("Ponto");
-        jMenuItemPonto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItemPonto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuItemPonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemPontoActionPerformed(evt);
@@ -154,18 +158,18 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Opções");
-        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jMenuItem5.setText("About");
-        jMenuItem5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItem5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setText("Tela Login");
-        jMenuItem6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItem6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu2.add(jMenuItem6);
 
         jMenuItem3.setText("Fazer Longoff");
-        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -175,7 +179,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem4.setText("Sair");
-        jMenuItem4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItem4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -220,6 +224,14 @@ public class Principal extends javax.swing.JFrame {
         ponto.setVisible(true);
         
     }//GEN-LAST:event_jMenuItemPontoActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        
+        CadastroFuncionario cadsFunc = new CadastroFuncionario();
+        jDesktopPane1.add(cadsFunc);
+        cadsFunc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
