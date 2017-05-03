@@ -129,28 +129,26 @@ public class Login extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "É necessário preencher todos os campos!", "", JOptionPane.INFORMATION_MESSAGE);
         
         } else {
-            
+
             FuncionarioDAO dao = new FuncionarioDAO();
+            List<Funcionario> listaFuncionario = new ArrayList<>();
 
-            if (dao.validaLogin(jPasswordField1.getText(), jTextFieldUsuario.getText())) {
-                List<Funcionario> listaFuncionario = new ArrayList<>();
+            listaFuncionario = dao.identificaUsuario(jTextFieldUsuario.getText(), jPasswordField1.getText());
+            String login = "", senha = "", perfil = "", nome = "";
 
-                listaFuncionario = dao.identificaUsuario(jTextFieldUsuario.getText(), jPasswordField1.getText(), jComboBox1.getSelectedItem().toString());
-             /*
-                String nome = "", cargo = "";
-                
-                for (Funcionario func : listaFuncionario) {
-                    nome = func.getNome();
-                    cargo = func.getCargo();
-                }
-                
-               
-                */
+            for (Funcionario func : listaFuncionario) {
+                login = func.getUsuario();
+                senha = func.getSenha();
+                perfil = func.getSenha();
+                nome = func.getNome();
+
+            }
+
+            if (login.equals(jTextFieldUsuario.getText()) & senha.equals(jPasswordField1.getText())) {
                 
                 dispose();
-
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario ou Senha Inválidos!", "Autenticação", JOptionPane.ERROR);
+                JOptionPane.showMessageDialog(null, "Usuario ou Senha Inválidos", "Erro", JOptionPane.ERROR_MESSAGE);
             }
 
         }

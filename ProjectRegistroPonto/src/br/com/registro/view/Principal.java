@@ -6,6 +6,7 @@
 package br.com.registro.view;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -19,6 +20,13 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        TelaLogin();
+        
+        Date data = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/YYYY");
+        jLabelTime.setText(formatador.format(data));
+        
+
     }
 
     /**
@@ -34,6 +42,8 @@ public class Principal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabelUsuario = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabelTime = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -61,16 +71,29 @@ public class Principal extends javax.swing.JFrame {
         jLabelUsuario.setForeground(new java.awt.Color(0, 0, 255));
         jLabelUsuario.setText("jLabel3");
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel3.setText("Time: ");
+
+        jLabelTime.setBackground(new java.awt.Color(0, 0, 255));
+        jLabelTime.setForeground(new java.awt.Color(0, 0, 255));
+        jLabelTime.setText("jLabel3");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelUsuario)
-                .addGap(157, 157, 157))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelTime))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelUsuario)))
+                .addGap(33, 33, 33))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,7 +101,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabelUsuario))
-                .addGap(0, 38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabelTime))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 51));
@@ -178,6 +205,11 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem6.setText("Tela Login");
         jMenuItem6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuItem3.setText("Fazer Longoff");
@@ -237,6 +269,13 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItemPontoActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        Login telaLogin = new Login();
+        jDesktopPane1.add(telaLogin);
+        telaLogin.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -272,6 +311,13 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     
+    public void TelaLogin(){
+        Login telaLogin = new Login();
+        jDesktopPane1.add(telaLogin);
+        telaLogin.setVisible(true);
+        
+    }
+    
     
     //=======================================================================================
     
@@ -282,6 +328,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelTime;
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
