@@ -6,6 +6,10 @@
 
 package br.com.registro.view;
 
+import br.com.registro.entidade.Funcionario;
+import br.com.registro.modelo.FuncionarioDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author TECNICO
@@ -76,6 +80,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         jLabel2.setText("Cargo:");
 
         jComboBoxCargo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administração", "Produção", "Almoxerifado", "Recursos Humanos" }));
+        jComboBoxCargo.setEnabled(false);
         jComboBoxCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCargoActionPerformed(evt);
@@ -84,6 +89,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Usuário:");
 
+        jTextFieldUsuario.setEnabled(false);
         jTextFieldUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldUsuarioActionPerformed(evt);
@@ -92,6 +98,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Senha:");
 
+        jPasswordFieldSenha.setEnabled(false);
         jPasswordFieldSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordFieldSenhaActionPerformed(evt);
@@ -101,6 +108,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         jLabel5.setText("Setor:");
 
         jComboBoxSetor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Setor A", "Setor B", "Setor C", "Setor D" }));
+        jComboBoxSetor.setEnabled(false);
         jComboBoxSetor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSetorActionPerformed(evt);
@@ -114,6 +122,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextFieldTelefone.setEnabled(false);
         jFormattedTextFieldTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextFieldTelefoneActionPerformed(evt);
@@ -124,12 +133,14 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Cidade:");
 
+        jTextFieldCidade.setEnabled(false);
         jTextFieldCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCidadeActionPerformed(evt);
             }
         });
 
+        jTextFieldBairro.setEnabled(false);
         jTextFieldBairro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldBairroActionPerformed(evt);
@@ -138,6 +149,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Rua:");
 
+        jTextFieldRua.setEnabled(false);
         jTextFieldRua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldRuaActionPerformed(evt);
@@ -146,6 +158,8 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
 
         jLabel10.setText("N°:");
 
+        jSpinnerNRua.setEnabled(false);
+
         jLabel11.setText("Descrição:");
 
         jScrollPane1.setViewportView(jTextPaneDescricao);
@@ -153,8 +167,14 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         jLabel12.setText("Data:");
 
         jButtonAdicionarFuncionario.setText("Adicionar");
+        jButtonAdicionarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarFuncionarioActionPerformed(evt);
+            }
+        });
 
         jButtonComfirmarFuncionario.setText("Comfirmar");
+        jButtonComfirmarFuncionario.setEnabled(false);
         jButtonComfirmarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonComfirmarFuncionarioActionPerformed(evt);
@@ -162,6 +182,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         });
 
         jButtonExcluirFuncionario.setText("Excluir");
+        jButtonExcluirFuncionario.setEnabled(false);
         jButtonExcluirFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExcluirFuncionarioActionPerformed(evt);
@@ -169,8 +190,12 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         });
 
         jButtonAlterarFuncionario.setText("Alterar");
+        jButtonAlterarFuncionario.setEnabled(false);
+
+        jDateChooser1.setEnabled(false);
 
         jButton1.setText("Cancelar");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -248,9 +273,9 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
                 .addGap(42, 42, 42)
                 .addComponent(jButtonAdicionarFuncionario)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(jButtonComfirmarFuncionario)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonExcluirFuncionario)
                 .addGap(18, 18, 18)
@@ -304,9 +329,9 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdicionarFuncionario)
                     .addComponent(jButton1)
-                    .addComponent(jButtonComfirmarFuncionario)
                     .addComponent(jButtonExcluirFuncionario)
-                    .addComponent(jButtonAlterarFuncionario))
+                    .addComponent(jButtonAlterarFuncionario)
+                    .addComponent(jButtonComfirmarFuncionario))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
@@ -362,6 +387,75 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
 
     private void jButtonComfirmarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComfirmarFuncionarioActionPerformed
         // TODO add your handling code here:
+        
+        Funcionario func = new Funcionario();
+        FuncionarioDAO fDao = new FuncionarioDAO();
+        
+        func.setUsuario(jTextFieldUsuario.getText());
+        func.setSenha(jPasswordFieldSenha.getText());
+        func.setNome(jTextFieldNome.getText());
+        if(jComboBoxCargo.getSelectedItem().equals("Administração")){ 
+            
+                func.setCargo("Administração");
+        }
+        
+        if(jComboBoxCargo.getSelectedItem().equals("Produção")){ 
+            
+                func.setCargo("Produção");
+        }
+        
+        if(jComboBoxCargo.getSelectedItem().equals("Almoxerifado")){ 
+            
+                func.setCargo("Almoxerifado");
+        }
+        
+        if(jComboBoxCargo.getSelectedItem().equals("Recursos Humanos")){ 
+            
+                func.setCargo("Recursos Humanos");
+        }
+        
+        //----
+        
+        if(jComboBoxSetor.getSelectedItem().equals("Setor A")){
+        
+            func.setSetor("Setor A");
+        }
+        
+        if(jComboBoxSetor.getSelectedItem().equals("Setor B")){
+        
+            func.setSetor("Setor B");
+        }
+        
+        if(jComboBoxSetor.getSelectedItem().equals("Setor C")){
+        
+            func.setSetor("Setor C");
+        }
+        
+        if(jComboBoxSetor.getSelectedItem().equals("Setor D")){
+        
+            func.setSetor("Setor D");
+        }
+        
+        func.setTelefoneCelular(jFormattedTextFieldTelefone.getText());
+        func.setCidade(jTextFieldCidade.getText());
+        func.setBairro(jTextFieldBairro.getText());
+        func.setRua(jTextFieldRua.getText());
+        func.setNumero(jSpinnerNRua.getComponentCount());
+        func.setDescricao(jTextPaneDescricao.getText());
+        func.setData(jDateChooser1.getDate());
+        
+        if(fDao.salvar(func)){
+        
+            JOptionPane.showMessageDialog(null, "Funcionario Cadastrado com Sucesso!");
+        }
+        
+        else {
+        
+            JOptionPane.showMessageDialog(null, "Funcionario não Cadastrado", "Atenção", 
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
     }//GEN-LAST:event_jButtonComfirmarFuncionarioActionPerformed
 
     private void jButtonExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirFuncionarioActionPerformed
@@ -371,6 +465,24 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonAdicionarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarFuncionarioActionPerformed
+        // TODO add your handling code here:
+        
+        jTextFieldUsuario.setEnabled(true);
+        jTextFieldNome.setEnabled(true);
+        jPasswordFieldSenha.setEnabled(true);
+        jComboBoxCargo.setEnabled(true);
+        jComboBoxSetor.setEnabled(true);
+        jFormattedTextFieldTelefone.setEnabled(true);
+        jTextFieldCidade.setEnabled(true);
+        jTextFieldBairro.setEnabled(true);
+        jTextFieldRua.setEnabled(true);
+        jSpinnerNRua.setEnabled(true);
+        jTextPaneDescricao.setEnabled(true);
+        jDateChooser1.setEnabled(true);
+        
+    }//GEN-LAST:event_jButtonAdicionarFuncionarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
