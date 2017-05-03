@@ -9,12 +9,12 @@ package br.com.registro.view;
  *
  * @author user_mw
  */
-public class Horas extends javax.swing.JInternalFrame {
+public class TelaLogin extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Horas
+     * Creates new form Login
      */
-    public Horas() {
+    public TelaLogin() {
         initComponents();
     }
 
