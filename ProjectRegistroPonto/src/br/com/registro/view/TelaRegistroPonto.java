@@ -30,16 +30,17 @@ import javax.swing.Timer;
  *
  * @author user_mw
  */
-public class RegistroPonto extends javax.swing.JInternalFrame {
-
+public class TelaRegistroPonto extends javax.swing.JInternalFrame {
+//=============
     /**
      * Creates new form RegistroPonto
      */
-    public RegistroPonto() {
+    public TelaRegistroPonto() {
         initComponents();
         data();
         hora();
         jTextFieldCodigoFuncionario.setDocument(new SoNumerosUtil());
+        
     }
 
     /**
@@ -66,10 +67,10 @@ public class RegistroPonto extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabelHora.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabelHora.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabelHora.setText("Hora");
 
-        jLabelData.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabelData.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabelData.setText("Data");
         jLabelData.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -78,6 +79,7 @@ public class RegistroPonto extends javax.swing.JInternalFrame {
         jTextFieldCodigoFuncionario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jButtonRegistrar.setText("Registrar");
+        jButtonRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarActionPerformed(evt);
@@ -193,8 +195,18 @@ public class RegistroPonto extends javax.swing.JInternalFrame {
                controle.setHoraSaida(data);          
                controle.setData(data);
                controle.setStatus("");
+               controle.setDescricao("");
                
-               dao.savar(controle);
+               if(dao.savar(controle)){
+                   
+                   JOptionPane.showMessageDialog(null, "Ponto registrado com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                   jTextFieldCodigoFuncionario.setText("");
+                   
+               }else{
+                   
+                   JOptionPane.showMessageDialog(null, "Erro ao registrar ponto. Contate o administrador do sistema.","Atenção", JOptionPane.ERROR_MESSAGE);
+                   
+               }
                
 
                 

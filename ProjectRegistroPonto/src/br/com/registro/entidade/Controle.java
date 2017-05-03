@@ -31,6 +31,7 @@ public class Controle {
    private Date horaRetornoAlmoco;
    private Date horaSaida;
    private Date data;
+   private String descricao;
    private String status;
    
    @ManyToOne(targetEntity = Funcionario.class)
@@ -98,6 +99,14 @@ public class Controle {
 
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     
