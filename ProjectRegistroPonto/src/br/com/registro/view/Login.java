@@ -148,7 +148,7 @@ public class Login extends javax.swing.JInternalFrame {
             }
 
             if (login.equals(jTextFieldUsuario.getText()) & senha.equals(jPasswordField1.getText())) {
-                
+                //Principal.jLabelUsuario.setText(nome);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario ou Senha Inválidos", "Erro", JOptionPane.ERROR_MESSAGE);
