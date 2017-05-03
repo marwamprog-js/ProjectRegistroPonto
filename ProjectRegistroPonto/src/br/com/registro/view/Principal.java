@@ -169,8 +169,18 @@ public class Principal extends javax.swing.JFrame {
         jMenu3.setText("Cadastros");
         jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+<<<<<<< HEAD
         jMenuItem2.setText("Funcioanário");
         jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+=======
+        jMenuItem2.setText("Funcionário");
+        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+>>>>>>> origin/master
         jMenu3.add(jMenuItem2);
 
         jMenuItemTelaHora.setText("Horas");
@@ -205,11 +215,14 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem6.setText("Tela Login");
         jMenuItem6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+<<<<<<< HEAD
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
             }
         });
+=======
+>>>>>>> origin/master
         jMenu2.add(jMenuItem6);
 
         jMenuItem3.setText("Fazer Longoff");
@@ -269,12 +282,22 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItemPontoActionPerformed
 
+<<<<<<< HEAD
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         Login telaLogin = new Login();
         jDesktopPane1.add(telaLogin);
         telaLogin.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+=======
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        
+        CadastroFuncionario cadsFunc = new CadastroFuncionario();
+        jDesktopPane1.add(cadsFunc);
+        cadsFunc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+>>>>>>> origin/master
 
     /**
      * @param args the command line arguments

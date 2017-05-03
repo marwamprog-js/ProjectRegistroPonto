@@ -34,8 +34,11 @@ public class Funcionario {
     private String cidade;
     private String descricao;
     private String usuario;
+    private String senha;
+    private Date data;
     
-    
+    @OneToMany(targetEntity = Controle.class)
+    private List<Controle> listaSetores;
     
 
     public String getUsuario() {
@@ -45,11 +48,7 @@ public class Funcionario {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-    private String senha;
-    private Date data;
-    
-    @OneToMany(targetEntity = Controle.class)
-    private List<Controle> listaSetores;
+
 
     @Override
     public String toString() {
