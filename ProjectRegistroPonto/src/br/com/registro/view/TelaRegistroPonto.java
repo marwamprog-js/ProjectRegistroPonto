@@ -32,6 +32,7 @@ import javax.swing.Timer;
  */
 public class TelaRegistroPonto extends javax.swing.JInternalFrame {
 //=============
+
     /**
      * Creates new form RegistroPonto
      */
@@ -40,7 +41,7 @@ public class TelaRegistroPonto extends javax.swing.JInternalFrame {
         data();
         hora();
         jTextFieldCodigoFuncionario.setDocument(new SoNumerosUtil());
-        
+
     }
 
     /**
@@ -267,39 +268,110 @@ public class TelaRegistroPonto extends javax.swing.JInternalFrame {
                         if (data.getTime() >= horaOneEntrada.getTime() && data.getTime() <= horaLimiteEntrada.getTime()) {
 
                             controle.setHoraEntrada(data);
+                            controle.setData(data);
+                            controle.setStatus("");
+                            controle.setDescricao("");
+
+                            if (dao.savar(controle)) {
+
+                                jLabelMessageErro.setText("Entrada Registrada com sucesso");
+                                jTextFieldCodigoFuncionario.setText("");
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(null, "Erro ao registrar ponto. Contate o administrador do sistema.", "Atenção", JOptionPane.ERROR_MESSAGE);
+
+                            }
+
+                        } else if (data.getTime() > horaLimiteEntrada.getTime() || data.getTime() < horaOneAlmoco.getTime()) {
+
+                            JOptionPane.showMessageDialog(null, "Não é possivel registrar ponto de entrada depois das 08:15", "Atenção", JOptionPane.ERROR_MESSAGE);
 
                         } else if (data.getTime() >= horaOneAlmoco.getTime() && data.getTime() <= horaLimiteAlmoco.getTime()) {
 
                             controle.setHoraAlmoco(data);
+                            controle.setData(data);
+                            controle.setStatus("");
+                            controle.setDescricao("");
 
-                        }else if (data.getTime() >= horaOneRetorno.getTime() && data.getTime() <= horaLimiteRetorno.getTime()){
-                            
+                            if (dao.update(controle)) {
+
+                                jLabelMessageErro.setText("Almoço Registrado com sucesso");
+                                jTextFieldCodigoFuncionario.setText("");
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(null, "Erro ao registrar ponto. Contate o administrador do sistema.", "Atenção", JOptionPane.ERROR_MESSAGE);
+
+                            }
+
+                        } else if (data.getTime() > horaLimiteAlmoco.getTime() || data.getTime() < horaOneRetorno.getTime()) {
+
+                            JOptionPane.showMessageDialog(null, "Não é possivel registrar ponto de Almoço depois das 12:15", "Atenção", JOptionPane.ERROR_MESSAGE);
+
+                        } else if (data.getTime() >= horaOneRetorno.getTime() && data.getTime() <= horaLimiteRetorno.getTime()) {
+
                             controle.setHoraRetornoAlmoco(data);
-                        }else if (data.getTime() >= horaOneSaida.getTime() && data.getTime() <= horaLimiteSaida.getTime()){
+                            controle.setData(data);
+                            controle.setStatus("");
+                            controle.setDescricao("");
+
+                            if (dao.update(controle)) {
+
+                                jLabelMessageErro.setText("Retorno do almoço Registrado com sucesso");
+                                jTextFieldCodigoFuncionario.setText("");
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(null, "Erro ao registrar ponto. Contate o administrador do sistema.", "Atenção", JOptionPane.ERROR_MESSAGE);
+
+                            }
                             
+
+                        } else if (data.getTime() > horaLimiteRetorno.getTime() || data.getTime() < horaOneSaida.getTime()) {
+
+                            JOptionPane.showMessageDialog(null, "Não é possivel registrar ponto de Retorno do almoço depois das 13:15", "Atenção", JOptionPane.ERROR_MESSAGE);
+
+                        } else if (data.getTime() >= horaOneSaida.getTime() && data.getTime() <= horaLimiteSaida.getTime()) {
+
                             controle.setHoraSaida(data);
+                            controle.setData(data);
+                            controle.setStatus("");
+                            controle.setDescricao("");
+
+                            if (dao.update(controle)) {
+
+                                jLabelMessageErro.setText("Saída Registrada com sucesso");
+                                jTextFieldCodigoFuncionario.setText("");
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(null, "Erro ao registrar ponto. Contate o administrador do sistema.", "Atenção", JOptionPane.ERROR_MESSAGE);
+
+                            }
                             
-                        }else if (data.getTime() >= horaOneExtra.getTime() && data.getTime() <= horaLimiteExtra.getTime()){
                             
+
+                        } else if (data.getTime() >= horaOneExtra.getTime() && data.getTime() <= horaLimiteExtra.getTime()) {
+
                             controle.setHoraExtra(horaOneExtra);
+                            controle.setData(data);
+                            controle.setStatus("");
+                            controle.setDescricao("");
+
+                            if (dao.update(controle)) {
+
+                                jLabelMessageErro.setText("Saída Registrada com sucesso");
+                                jTextFieldCodigoFuncionario.setText("");
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(null, "Erro ao registrar ponto. Contate o administrador do sistema.", "Atenção", JOptionPane.ERROR_MESSAGE);
+
+                            }
                             
-                        }
-                                               
-                        
-                        
-                        controle.setData(data);
-                        controle.setStatus("");
-                        controle.setDescricao("");
-
-                        if (dao.savar(controle)) {
-
-                            JOptionPane.showMessageDialog(null, "Ponto registrado com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
-                            jTextFieldCodigoFuncionario.setText("");
-
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "Erro ao registrar ponto. Contate o administrador do sistema.", "Atenção", JOptionPane.ERROR_MESSAGE);
-
+                            
+                            
                         }
 
                     } else {
