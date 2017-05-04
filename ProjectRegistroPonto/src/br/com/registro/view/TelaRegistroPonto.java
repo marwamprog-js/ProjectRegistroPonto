@@ -143,6 +143,10 @@ public class TelaRegistroPonto extends javax.swing.JInternalFrame {
         FuncionarioDAO daoFunc = new FuncionarioDAO();
         ControleDAO dao = new ControleDAO();
 
+        
+        DateFormat hora = new SimpleDateFormat("HH:mm");
+        Date d = new Date();
+
         jLabelMessageErro.setText("");
 
         if (jTextFieldCodigoFuncionario.getText().isEmpty()) {
@@ -169,48 +173,109 @@ public class TelaRegistroPonto extends javax.swing.JInternalFrame {
 
             } else {
 
-                for (Funcionario func : listaFuncionario) {
-
-                    funcionario.setNome(func.getNome());
-                    funcionario.setCargo(func.getCargo());
-                    funcionario.setSetor(func.getSetor());
-                    funcionario.setTelefoneCelular(func.getTelefoneCelular());
-                    funcionario.setRua(func.getRua());
-                    funcionario.setNumero(func.getNumero());
-                    funcionario.setBairro(func.getBairro());
-                    funcionario.setCidade(func.getCidade());
-                    funcionario.setDescricao(func.getDescricao());
-                    funcionario.setData(func.getData());
-                    funcionario.setSenha(func.getSenha());
-
+                try {
+                    for (Funcionario func : listaFuncionario) {
+                        
+                        funcionario.setNome(func.getNome());
+                        funcionario.setCargo(func.getCargo());
+                        funcionario.setSetor(func.getSetor());
+                        funcionario.setTelefoneCelular(func.getTelefoneCelular());
+                        funcionario.setRua(func.getRua());
+                        funcionario.setNumero(func.getNumero());
+                        funcionario.setBairro(func.getBairro());
+                        funcionario.setCidade(func.getCidade());
+                        funcionario.setDescricao(func.getDescricao());
+                        funcionario.setData(func.getData());
+                        funcionario.setSenha(func.getSenha());
+                        
+                    }
+                    
+                    controle.setFuncionario(funcionario);
+                    
+                    Date data = new Date();
+                    
+                    //===================================
+                    // Hora de entrada
+                    String horaEntradaOne = "08:00";
+                    String horaEntradaLimite = "08:15";
+                    
+                    //===================================
+                    // Hora de almoço
+                    
+                    String horaAlmocoOne = "12:00";
+                    String horaAlmocoLimite = "12:15";
+                    
+                    //===================================
+                    // Hora de Retorno almoço
+                    
+                    String horaRetornoAlmocoOne = "13:00";
+                    String horaRetornoAlmocoLimite = "13:15";
+                    
+                    //===================================
+                    // Hora de Saída
+                    
+                    String horaSaidaOne = "18:00";
+                    String horaSaidaLimite = "18:15";
+                    
+                    //===================================
+                    // Hora de Extra
+                    
+                    String horaExtraOne = "18:16";
+                    String horaExtraLimite = "00:00";
+                    
+                    hora.format(data);
+                    
+                    //===================================
+                    // Hora de entrada
+                    Date horaOneEntrada = null;
+                    horaOneEntrada = hora.parse(horaEntradaOne);
+                                       
+                    Date horaLimiteEntrada = null;
+                    horaLimiteEntrada = hora.parse(horaEntradaLimite);
+                    
+                    //===================================
+                    // Hora de Almoço
+                    Date horaOneAlmoco = null;
+                    horaOneAlmoco = hora.parse(horaAlmocoOne);
+                                       
+                    Date horaLimiteAlmoco = null;
+                    horaLimiteAlmoco = hora.parse(horaAlmocoLimite);
+                    
+                    
+                    //---------------------------------------------------------
+                    //Teste
+                    
+                    if(data.getTime() >= horaOneEntrada.getTime() && data.getTime() <= horaLimiteEntrada.getTime()){
+                        
+                        controle.setHoraEntrada(data);
+                        
+                    }else if(data.getTime() >= horaLimiteEntrada.getTime()){
+                        
+                        JOptionPane.showMessageDialog(null, "Não pode bater o horário de entrada. Favor verificar com Gerente", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                        
+                    }
+                        
+                        
+                    controle.setHoraAlmoco(data);
+                    controle.setHoraRetornoAlmoco(data);
+                    controle.setHoraSaida(data);
+                    controle.setData(data);
+                    controle.setStatus("");
+                    controle.setDescricao("");
+                    
+                    if (dao.savar(controle)) {
+                        
+                        JOptionPane.showMessageDialog(null, "Ponto registrado com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                        jTextFieldCodigoFuncionario.setText("");
+                        
+                    } else {
+                        
+                        JOptionPane.showMessageDialog(null, "Erro ao registrar ponto. Contate o administrador do sistema.", "Atenção", JOptionPane.ERROR_MESSAGE);
+                        
+                    }
+                } catch (ParseException ex) {
+                    Logger.getLogger(TelaRegistroPonto.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-                controle.setFuncionario(funcionario);
-                
-                Date data = new Date();
-                
-               controle.setHoraEntrada(data);
-               controle.setHoraAlmoco(data);
-               controle.setHoraRetornoAlmoco(data);
-               controle.setHoraSaida(data);          
-               controle.setData(data);
-               controle.setStatus("");
-               controle.setDescricao("");
-               
-               if(dao.savar(controle)){
-                   
-                   JOptionPane.showMessageDialog(null, "Ponto registrado com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
-                   jTextFieldCodigoFuncionario.setText("");
-                   
-               }else{
-                   
-                   JOptionPane.showMessageDialog(null, "Erro ao registrar ponto. Contate o administrador do sistema.","Atenção", JOptionPane.ERROR_MESSAGE);
-                   
-               }
-               
-
-                
-                
 
             }
 
