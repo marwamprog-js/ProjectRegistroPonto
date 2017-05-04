@@ -55,11 +55,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldHoraEntrada = new javax.swing.JTextField();
-        jTextFieldAlmoco = new javax.swing.JTextField();
-        jTextFieldRetornoAlmoco = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextFieldHoraSaida = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTextFieldStatus = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -67,8 +63,15 @@ public class TelaHoras extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jTextFieldData = new javax.swing.JTextField();
+        jFormattedTextFieldHoraEntrada = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldHoraEntrada1 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldHoraEntrada2 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldHoraEntrada3 = new javax.swing.JFormattedTextField();
         jButtonAtualizar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jButtonCancelar1 = new javax.swing.JButton();
+        jButtonCancelar2 = new javax.swing.JButton();
+        jButtonCancelar3 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -134,15 +137,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Hora Retorno de Almoço.:");
 
-        jTextFieldHoraEntrada.setEnabled(false);
-
-        jTextFieldAlmoco.setEnabled(false);
-
-        jTextFieldRetornoAlmoco.setEnabled(false);
-
         jLabel7.setText("Hora Saída.:");
-
-        jTextFieldHoraSaida.setEnabled(false);
 
         jLabel8.setText("Status.:");
 
@@ -158,6 +153,50 @@ public class TelaHoras extends javax.swing.JInternalFrame {
         jLabel10.setText("Data.:");
 
         jTextFieldData.setEnabled(false);
+
+        try {
+            jFormattedTextFieldHoraEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldHoraEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldHoraEntradaActionPerformed(evt);
+            }
+        });
+
+        try {
+            jFormattedTextFieldHoraEntrada1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldHoraEntrada1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldHoraEntrada1ActionPerformed(evt);
+            }
+        });
+
+        try {
+            jFormattedTextFieldHoraEntrada2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldHoraEntrada2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldHoraEntrada2ActionPerformed(evt);
+            }
+        });
+
+        try {
+            jFormattedTextFieldHoraEntrada3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldHoraEntrada3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldHoraEntrada3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -182,16 +221,16 @@ public class TelaHoras extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldRetornoAlmoco, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldAlmoco, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                            .addComponent(jFormattedTextFieldHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldHoraEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldHoraEntrada2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldHoraEntrada3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(122, 122, 122)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(103, 103, 103)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                                     .addComponent(jLabel9)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
@@ -208,24 +247,24 @@ public class TelaHoras extends javax.swing.JInternalFrame {
                     .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 12, Short.MAX_VALUE)
+                .addGap(0, 14, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextFieldHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jFormattedTextFieldHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextFieldAlmoco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jFormattedTextFieldHoraEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextFieldRetornoAlmoco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jFormattedTextFieldHoraEntrada2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextFieldHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jFormattedTextFieldHoraEntrada3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
@@ -237,7 +276,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jButtonAtualizar.setText("Atualizar");
+        jButtonAtualizar.setText("Adicionar");
         jButtonAtualizar.setEnabled(false);
         jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,11 +284,35 @@ public class TelaHoras extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setText("Confirmar");
         jButtonCancelar.setEnabled(false);
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar1.setText("Cancelar");
+        jButtonCancelar1.setEnabled(false);
+        jButtonCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelar1ActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar2.setText("Atualizar");
+        jButtonCancelar2.setEnabled(false);
+        jButtonCancelar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelar2ActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar3.setText("Excluir");
+        jButtonCancelar3.setEnabled(false);
+        jButtonCancelar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelar3ActionPerformed(evt);
             }
         });
 
@@ -284,6 +347,12 @@ public class TelaHoras extends javax.swing.JInternalFrame {
                 .addComponent(jButtonAtualizar)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonCancelar)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCancelar1)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCancelar2)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCancelar3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -309,8 +378,11 @@ public class TelaHoras extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAtualizar)
-                    .addComponent(jButtonCancelar))
-                .addContainerGap(101, Short.MAX_VALUE))
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jButtonCancelar1)
+                    .addComponent(jButtonCancelar2)
+                    .addComponent(jButtonCancelar3))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -334,10 +406,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
 
-        jTextFieldHoraEntrada.setEnabled(false);
-        jTextFieldAlmoco.setEnabled(false);
-        jTextFieldRetornoAlmoco.setEnabled(false);
-        jTextFieldHoraSaida.setEnabled(false);
+       
         jTextFieldStatus.setEnabled(false);
         jTextFieldData.setEnabled(false);
         jTextAreaDescricao.setEnabled(false);
@@ -346,10 +415,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
         jButtonAtualizar.setEnabled(false);
         jButtonCancelar.setEnabled(false);
 
-        jTextFieldHoraEntrada.setText("");
-        jTextFieldAlmoco.setText("");
-        jTextFieldRetornoAlmoco.setText("");
-        jTextFieldHoraSaida.setText("");
+        
         jTextFieldStatus.setText("");
         jTextFieldData.setText("");
         jTextAreaDescricao.setText("");
@@ -362,18 +428,12 @@ public class TelaHoras extends javax.swing.JInternalFrame {
         int indiceLinha = jTable1.getSelectedRow();
 
         jTextFieldCodigo.setText(jTable1.getValueAt(indiceLinha, 0).toString());
-        jTextFieldHoraEntrada.setText(jTable1.getValueAt(indiceLinha, 1).toString());
-        jTextFieldAlmoco.setText(jTable1.getValueAt(indiceLinha, 2).toString());
-        jTextFieldRetornoAlmoco.setText(jTable1.getValueAt(indiceLinha, 3).toString());
-        jTextFieldHoraSaida.setText(jTable1.getValueAt(indiceLinha, 4).toString());
+        
         jTextFieldStatus.setText(jTable1.getValueAt(indiceLinha, 5).toString());
         jTextFieldData.setText(jTable1.getValueAt(indiceLinha, 6).toString());
         jTextAreaDescricao.setText(jTable1.getValueAt(indiceLinha, 7).toString());
 
-        jTextFieldHoraEntrada.setEnabled(true);
-        jTextFieldAlmoco.setEnabled(true);
-        jTextFieldRetornoAlmoco.setEnabled(true);
-        jTextFieldHoraSaida.setEnabled(true);
+        
         jTextFieldStatus.setEnabled(true);
         jTextFieldData.setEnabled(true);
         jTextAreaDescricao.setEnabled(true);
@@ -451,13 +511,48 @@ public class TelaHoras extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jTextFieldCodigoPesquisaKeyReleased
 
+    private void jButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCancelar1ActionPerformed
+
+    private void jButtonCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCancelar2ActionPerformed
+
+    private void jButtonCancelar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCancelar3ActionPerformed
+
+    private void jFormattedTextFieldHoraEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldHoraEntradaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldHoraEntradaActionPerformed
+
+    private void jFormattedTextFieldHoraEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldHoraEntrada1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldHoraEntrada1ActionPerformed
+
+    private void jFormattedTextFieldHoraEntrada2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldHoraEntrada2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldHoraEntrada2ActionPerformed
+
+    private void jFormattedTextFieldHoraEntrada3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldHoraEntrada3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldHoraEntrada3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtualizar;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonCancelar1;
+    private javax.swing.JButton jButtonCancelar2;
+    private javax.swing.JButton jButtonCancelar3;
     private javax.swing.JButton jButtonCodigoPesquisa;
     private javax.swing.JButton jButtonDataPesquisa;
     private com.toedter.calendar.JDateChooser jDateChooserDataPesquisa;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHoraEntrada;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHoraEntrada1;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHoraEntrada2;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHoraEntrada3;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -474,13 +569,9 @@ public class TelaHoras extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextAreaDescricao;
-    private javax.swing.JTextField jTextFieldAlmoco;
     private javax.swing.JTextField jTextFieldCodigo;
     private javax.swing.JTextField jTextFieldCodigoPesquisa;
     private javax.swing.JTextField jTextFieldData;
-    private javax.swing.JTextField jTextFieldHoraEntrada;
-    private javax.swing.JTextField jTextFieldHoraSaida;
-    private javax.swing.JTextField jTextFieldRetornoAlmoco;
     private javax.swing.JTextField jTextFieldStatus;
     // End of variables declaration//GEN-END:variables
 }
