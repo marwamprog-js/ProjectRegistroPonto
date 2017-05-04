@@ -76,7 +76,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
         setTitle("Atualizar Hora");
         setPreferredSize(new java.awt.Dimension(800, 500));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(java.awt.SystemColor.inactiveCaptionBorder);
 
         jButtonCodigoPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/registro/img/lupa_32x32.png"))); // NOI18N
         jButtonCodigoPesquisa.setToolTipText("Digite o código do funcionário");

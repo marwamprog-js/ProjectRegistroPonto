@@ -66,12 +66,14 @@ public class TelaRegistroPonto extends javax.swing.JInternalFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(300, 400));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(java.awt.SystemColor.inactiveCaptionBorder);
 
         jLabelHora.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabelHora.setForeground(new java.awt.Color(255, 0, 0));
         jLabelHora.setText("Hora");
 
         jLabelData.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabelData.setForeground(new java.awt.Color(255, 0, 0));
         jLabelData.setText("Data");
         jLabelData.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -119,7 +121,7 @@ public class TelaRegistroPonto extends javax.swing.JInternalFrame {
                 .addComponent(jLabelMessageErro, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
