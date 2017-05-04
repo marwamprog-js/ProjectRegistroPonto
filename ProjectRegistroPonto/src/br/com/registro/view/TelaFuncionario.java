@@ -10,9 +10,9 @@ import br.com.registro.entidade.Funcionario;
 import br.com.registro.modelo.FuncionarioDAO;
 import javax.swing.JOptionPane;
 
-/**
+/*
  *
- * @author TECNICO
+ * @author TECNICO ...
  */
 public class TelaFuncionario extends javax.swing.JInternalFrame {
 
