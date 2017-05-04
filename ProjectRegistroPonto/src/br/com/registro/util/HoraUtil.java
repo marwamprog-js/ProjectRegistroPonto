@@ -5,7 +5,7 @@
  */
 package br.com.registro.util;
 
-import br.com.registro.view.TelaRegistroPonto;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -19,7 +19,7 @@ public class HoraUtil implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Calendar now = Calendar.getInstance();
-        TelaRegistroPonto.jLabelHora.setText(String.format("%1$tH : %1$tM : %1$tS", now));
+        //TelaRegistroPonto.jLabelHora.setText(String.format("%1$tH : %1$tM : %1$tS", now));
     }
 
 }

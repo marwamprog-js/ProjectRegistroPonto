@@ -451,7 +451,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         func.setRua(jTextFieldRua.getText());
         func.setNumero(jSpinnerNRua.getComponentCount());
         func.setDescricao(jTextPaneDescricao.getText());
-        func.setData(jDateChooser1.getDate());
+        
         
         if(fDao.salvar(func)){
         

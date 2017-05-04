@@ -35,28 +35,11 @@ public class Funcionario {
     private String descricao;
     private String usuario;
     private String senha;
-    private Date data;
+    private String data;
     
     @OneToMany(targetEntity = Controle.class)
     private List<Controle> listaSetores;
-    
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Funcionario{" + "nome=" + nome + '}';
-    }
-
-    
-    
     public Long getIdFuncionario() {
         return idFuncionario;
     }
@@ -121,12 +104,28 @@ public class Funcionario {
         this.bairro = bairro;
     }
 
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
     public String getDescricao() {
         return descricao;
     }
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getSenha() {
@@ -137,11 +136,11 @@ public class Funcionario {
         this.senha = senha;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -152,15 +151,8 @@ public class Funcionario {
     public void setListaSetores(List<Controle> listaSetores) {
         this.listaSetores = listaSetores;
     }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
     
-    
+
+   
     
 }

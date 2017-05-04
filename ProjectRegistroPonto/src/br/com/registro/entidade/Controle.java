@@ -26,12 +26,12 @@ public class Controle {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long idControle;
-   private Date horaEntrada;
-   private Date horaAlmoco;
-   private Date horaRetornoAlmoco;
-   private Date horaSaida;
-   private Date horaExtra;
-   private Date data;
+   private String horaEntrada;
+   private String horaAlmoco;
+   private String horaRetornoAlmoco;
+   private String horaSaida;
+   private String horaExtra;
+   private String data;
    private String descricao;
    private String status;
    
@@ -46,44 +46,60 @@ public class Controle {
         this.idControle = idControle;
     }
 
-    public Date getHoraEntrada() {
+    public String getHoraEntrada() {
         return horaEntrada;
     }
 
-    public void setHoraEntrada(Date horaEntrada) {
+    public void setHoraEntrada(String horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
 
-    public Date getHoraAlmoco() {
+    public String getHoraAlmoco() {
         return horaAlmoco;
     }
 
-    public void setHoraAlmoco(Date horaAlmoco) {
+    public void setHoraAlmoco(String horaAlmoco) {
         this.horaAlmoco = horaAlmoco;
     }
 
-    public Date getHoraRetornoAlmoco() {
+    public String getHoraRetornoAlmoco() {
         return horaRetornoAlmoco;
     }
 
-    public void setHoraRetornoAlmoco(Date horaRetornoAlmoco) {
+    public void setHoraRetornoAlmoco(String horaRetornoAlmoco) {
         this.horaRetornoAlmoco = horaRetornoAlmoco;
     }
 
-    public Date getHoraSaida() {
+    public String getHoraSaida() {
         return horaSaida;
     }
 
-    public void setHoraSaida(Date horaSaida) {
+    public void setHoraSaida(String horaSaida) {
         this.horaSaida = horaSaida;
     }
 
-    public Date getData() {
+    public String getHoraExtra() {
+        return horaExtra;
+    }
+
+    public void setHoraExtra(String horaExtra) {
+        this.horaExtra = horaExtra;
+    }
+
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getStatus() {
@@ -102,26 +118,7 @@ public class Controle {
         this.funcionario = funcionario;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Date getHoraExtra() {
-        return horaExtra;
-    }
-
-    public void setHoraExtra(Date horaExtra) {
-        this.horaExtra = horaExtra;
-    }
-
-    
-   
-      
-    
+     
     
     
 }

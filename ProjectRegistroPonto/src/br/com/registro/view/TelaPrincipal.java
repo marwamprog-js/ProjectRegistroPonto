@@ -320,10 +320,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenuItemPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPontoActionPerformed
         // TODO add your handling code here:
         
-        TelaRegistroPonto ponto = new TelaRegistroPonto();
-        jDesktopPane1.add(ponto);
         
-        ponto.setVisible(true);
         
     }//GEN-LAST:event_jMenuItemPontoActionPerformed
 
