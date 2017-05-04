@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.registro.modelo;
-
+/**/
 import br.com.registro.entidade.Controle;
 import br.com.registro.entidade.Funcionario;
 import br.com.registro.util.HibernateUtil;
