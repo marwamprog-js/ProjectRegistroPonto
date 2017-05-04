@@ -478,6 +478,10 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
     private void jButtonAdicionarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarFuncionarioActionPerformed
         // TODO add your handling code here:
         
+        jButton1.setVisible(true); 
+        jButtonComfirmarFuncionario.setVisible(true);
+        jButtonAdicionarFuncionario.setVisible(false);
+        
         jTextFieldUsuario.setEnabled(true);
         jTextFieldNome.setEnabled(true);
         jPasswordFieldSenha.setEnabled(true);
