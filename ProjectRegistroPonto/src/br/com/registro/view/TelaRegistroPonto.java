@@ -80,7 +80,7 @@ public class TelaRegistroPonto extends javax.swing.JInternalFrame {
         jTextFieldCodigoFuncionario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jButtonRegistrar.setText("Registrar");
-        jButtonRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarActionPerformed(evt);
