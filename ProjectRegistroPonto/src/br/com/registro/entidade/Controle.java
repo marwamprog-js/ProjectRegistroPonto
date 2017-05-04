@@ -30,6 +30,7 @@ public class Controle {
    private Date horaAlmoco;
    private Date horaRetornoAlmoco;
    private Date horaSaida;
+   private Date horaExtra;
    private Date data;
    private String descricao;
    private String status;
@@ -107,6 +108,14 @@ public class Controle {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Date getHoraExtra() {
+        return horaExtra;
+    }
+
+    public void setHoraExtra(Date horaExtra) {
+        this.horaExtra = horaExtra;
     }
 
     

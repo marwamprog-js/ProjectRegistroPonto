@@ -143,7 +143,6 @@ public class TelaRegistroPonto extends javax.swing.JInternalFrame {
         FuncionarioDAO daoFunc = new FuncionarioDAO();
         ControleDAO dao = new ControleDAO();
 
-        
         DateFormat hora = new SimpleDateFormat("HH:mm");
         Date d = new Date();
 
@@ -175,7 +174,7 @@ public class TelaRegistroPonto extends javax.swing.JInternalFrame {
 
                 try {
                     for (Funcionario func : listaFuncionario) {
-                        
+
                         funcionario.setNome(func.getNome());
                         funcionario.setCargo(func.getCargo());
                         funcionario.setSetor(func.getSetor());
@@ -187,91 +186,126 @@ public class TelaRegistroPonto extends javax.swing.JInternalFrame {
                         funcionario.setDescricao(func.getDescricao());
                         funcionario.setData(func.getData());
                         funcionario.setSenha(func.getSenha());
-                        
+
                     }
-                    
+
                     controle.setFuncionario(funcionario);
-                    
+
                     Date data = new Date();
-                    
+
                     //===================================
                     // Hora de entrada
                     String horaEntradaOne = "08:00";
                     String horaEntradaLimite = "08:15";
-                    
+
                     //===================================
                     // Hora de almoço
-                    
                     String horaAlmocoOne = "12:00";
                     String horaAlmocoLimite = "12:15";
-                    
+
                     //===================================
                     // Hora de Retorno almoço
-                    
-                    String horaRetornoAlmocoOne = "13:00";
-                    String horaRetornoAlmocoLimite = "13:15";
-                    
+                    String horaRetornoOne = "13:00";
+                    String horaRetornoLimite = "13:15";
+
                     //===================================
                     // Hora de Saída
-                    
                     String horaSaidaOne = "18:00";
                     String horaSaidaLimite = "18:15";
-                    
+
                     //===================================
                     // Hora de Extra
-                    
                     String horaExtraOne = "18:16";
                     String horaExtraLimite = "00:00";
-                    
+
                     hora.format(data);
-                    
+
                     //===================================
                     // Hora de entrada
                     Date horaOneEntrada = null;
                     horaOneEntrada = hora.parse(horaEntradaOne);
-                                       
+
                     Date horaLimiteEntrada = null;
                     horaLimiteEntrada = hora.parse(horaEntradaLimite);
-                    
+
                     //===================================
                     // Hora de Almoço
                     Date horaOneAlmoco = null;
                     horaOneAlmoco = hora.parse(horaAlmocoOne);
-                                       
+
                     Date horaLimiteAlmoco = null;
                     horaLimiteAlmoco = hora.parse(horaAlmocoLimite);
-                    
-                    
+
+                    //===================================
+                    // Hora de Retorno do Almoço
+                    Date horaOneRetorno = null;
+                    horaOneRetorno = hora.parse(horaRetornoOne);
+
+                    Date horaLimiteRetorno = null;
+                    horaLimiteRetorno = hora.parse(horaRetornoLimite);
+
+                    //===================================
+                    // Hora de Saída
+                    Date horaOneSaida = null;
+                    horaOneSaida = hora.parse(horaSaidaOne);
+
+                    Date horaLimiteSaida = null;
+                    horaLimiteSaida = hora.parse(horaSaidaLimite);
+
+                    //===================================
+                    // Hora Extra
+                    Date horaOneExtra = null;
+                    horaOneExtra = hora.parse(horaExtraOne);
+
+                    Date horaLimiteExtra = null;
+                    horaLimiteExtra = hora.parse(horaExtraLimite);
+
                     //---------------------------------------------------------
                     //Teste
-                    
-                    if(data.getTime() >= horaOneEntrada.getTime() && data.getTime() <= horaLimiteEntrada.getTime()){
+                    if (data.getTime() < horaOneEntrada.getTime() || data.getTime() > horaLimiteExtra.getTime()) {
+
+                        if (data.getTime() >= horaOneEntrada.getTime() && data.getTime() <= horaLimiteEntrada.getTime()) {
+
+                            controle.setHoraEntrada(data);
+
+                        } else if (data.getTime() >= horaOneAlmoco.getTime() && data.getTime() <= horaLimiteAlmoco.getTime()) {
+
+                            controle.setHoraAlmoco(data);
+
+                        }else if (data.getTime() >= horaOneRetorno.getTime() && data.getTime() <= horaLimiteRetorno.getTime()){
+                            
+                            controle.setHoraRetornoAlmoco(data);
+                        }else if (data.getTime() >= horaOneSaida.getTime() && data.getTime() <= horaLimiteSaida.getTime()){
+                            
+                            controle.setHoraSaida(data);
+                            
+                        }else if (data.getTime() >= horaOneExtra.getTime() && data.getTime() <= horaLimiteExtra.getTime()){
+                            
+                            controle.setHoraExtra(horaOneExtra);
+                            
+                        }
+                                               
                         
-                        controle.setHoraEntrada(data);
                         
-                    }else if(data.getTime() >= horaLimiteEntrada.getTime()){
-                        
-                        JOptionPane.showMessageDialog(null, "Não pode bater o horário de entrada. Favor verificar com Gerente", "Atenção", JOptionPane.INFORMATION_MESSAGE);
-                        
-                    }
-                        
-                        
-                    controle.setHoraAlmoco(data);
-                    controle.setHoraRetornoAlmoco(data);
-                    controle.setHoraSaida(data);
-                    controle.setData(data);
-                    controle.setStatus("");
-                    controle.setDescricao("");
-                    
-                    if (dao.savar(controle)) {
-                        
-                        JOptionPane.showMessageDialog(null, "Ponto registrado com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
-                        jTextFieldCodigoFuncionario.setText("");
-                        
+                        controle.setData(data);
+                        controle.setStatus("");
+                        controle.setDescricao("");
+
+                        if (dao.savar(controle)) {
+
+                            JOptionPane.showMessageDialog(null, "Ponto registrado com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                            jTextFieldCodigoFuncionario.setText("");
+
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "Erro ao registrar ponto. Contate o administrador do sistema.", "Atenção", JOptionPane.ERROR_MESSAGE);
+
+                        }
+
                     } else {
-                        
-                        JOptionPane.showMessageDialog(null, "Erro ao registrar ponto. Contate o administrador do sistema.", "Atenção", JOptionPane.ERROR_MESSAGE);
-                        
+
+                        JOptionPane.showMessageDialog(null, "Fora do horário de trabalho", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+
                     }
                 } catch (ParseException ex) {
                     Logger.getLogger(TelaRegistroPonto.class.getName()).log(Level.SEVERE, null, ex);
@@ -280,7 +314,6 @@ public class TelaRegistroPonto extends javax.swing.JInternalFrame {
             }
 
         }
-
 
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
