@@ -823,7 +823,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Erro ao Atualizar.", "Atenção", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Em Desenvolvimento.", "Atenção", JOptionPane.ERROR_MESSAGE);
 
                     jButtonAdicionar.setEnabled(true);
                     jButtonConfirmar.setEnabled(false);
@@ -857,6 +857,9 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         // TODO add your handling code here:
+        
+        JOptionPane.showMessageDialog(null, "Em Desenvolvimento.", "Atenção", JOptionPane.ERROR_MESSAGE);
+        
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jFormattedTextFieldHoraEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldHoraEntradaActionPerformed
