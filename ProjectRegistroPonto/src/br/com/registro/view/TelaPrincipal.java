@@ -9,8 +9,10 @@ import java.awt.Cursor;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
-/*****
+/**
+ * ***
  *
  * @author user_mw
  */
@@ -21,15 +23,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
-       
-        
+
         Date data = new Date();
         SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/YYYY");
         jLabelTime.setText(formatador.format(data));
         TelaLogin telaLogin = new TelaLogin();
-        jDesktopPane1.add( telaLogin);
+        jDesktopPane1.add(telaLogin);
         telaLogin.setVisible(true);
-        
 
     }
 
@@ -53,22 +53,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuTelas = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItemTelaHora = new javax.swing.JMenuItem();
-        jMenuItemPonto = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        jMenuOpcao = new javax.swing.JMenu();
+        jMenuItemAbout = new javax.swing.JMenuItem();
+        jMenuItemLogin = new javax.swing.JMenuItem();
+        jMenuItemLongoff = new javax.swing.JMenuItem();
+        jMenuItemSair = new javax.swing.JMenuItem();
+        jMenuRelatorio = new javax.swing.JMenu();
         jMenuItemRelatorio = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PointerControl - Principal");
-        setPreferredSize(new java.awt.Dimension(800, 700));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
@@ -190,9 +188,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Telas do Sistema");
-        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenu1.setEnabled(false);
+        jMenuTelas.setText("Telas do Sistema");
+        jMenuTelas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuTelas.setEnabled(false);
 
         jMenu3.setText("Cadastros");
         jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -215,63 +213,64 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItemTelaHora);
 
-        jMenu1.add(jMenu3);
+        jMenuTelas.add(jMenu3);
 
-        jMenuItemPonto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemPonto.setText("Ponto");
-        jMenuItemPonto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItemPonto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemPontoActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItemPonto);
+        jMenuBar1.add(jMenuTelas);
 
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Opções");
-        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenu2.addMenuListener(new javax.swing.event.MenuListener() {
+        jMenuOpcao.setText("Opções");
+        jMenuOpcao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuOpcao.addMenuListener(new javax.swing.event.MenuListener() {
             public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
             public void menuSelected(javax.swing.event.MenuEvent evt) {
-                jMenu2MenuSelected(evt);
+                jMenuOpcaoMenuSelected(evt);
             }
         });
 
-        jMenuItem5.setText("About");
-        jMenuItem5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenu2.add(jMenuItem5);
-
-        jMenuItem6.setText("Tela Login");
-        jMenuItem6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemAbout.setText("About");
+        jMenuItemAbout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                jMenuItemAboutActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenuOpcao.add(jMenuItemAbout);
 
-        jMenuItem3.setText("Fazer Longoff");
-        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemLogin.setText("Tela Login");
+        jMenuItemLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuItemLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItemLoginActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenuOpcao.add(jMenuItemLogin);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem4.setText("Sair");
-        jMenuItem4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenu2.add(jMenuItem4);
+        jMenuItemLongoff.setText("Fazer Longoff");
+        jMenuItemLongoff.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuItemLongoff.setEnabled(false);
+        jMenuItemLongoff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLongoffActionPerformed(evt);
+            }
+        });
+        jMenuOpcao.add(jMenuItemLongoff);
 
-        jMenuBar1.add(jMenu2);
+        jMenuItemSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItemSair.setText("Sair");
+        jMenuItemSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSairActionPerformed(evt);
+            }
+        });
+        jMenuOpcao.add(jMenuItemSair);
 
-        jMenu4.setText("Relatórios ");
-        jMenu4.setEnabled(false);
+        jMenuBar1.add(jMenuOpcao);
+
+        jMenuRelatorio.setText("Relatórios ");
+        jMenuRelatorio.setEnabled(false);
 
         jMenuItemRelatorio.setText("Relatórios de Horas");
         jMenuItemRelatorio.addActionListener(new java.awt.event.ActionListener() {
@@ -279,9 +278,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMenuItemRelatorioActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItemRelatorio);
+        jMenuRelatorio.add(jMenuItemRelatorio);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(jMenuRelatorio);
 
         setJMenuBar(jMenuBar1);
 
@@ -302,31 +301,44 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemTelaHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTelaHoraActionPerformed
         // TODO add your handling code here:
-        
+
         TelaHoras tela = new TelaHoras();
-        
+
         jDesktopPane1.add(tela);
         tela.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItemTelaHoraActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuItemLongoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLongoffActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItemPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPontoActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
-    }//GEN-LAST:event_jMenuItemPontoActionPerformed
+        int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja fazer Longoff?", "Atenção", JOptionPane.YES_NO_OPTION);
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        if (confirma == JOptionPane.YES_OPTION) {
+
+            jMenuItemLongoff.setEnabled(false);
+            jMenuItemAbout.setEnabled(true);
+            jMenuItemLogin.setEnabled(true);
+            jMenuItemSair.setEnabled(true);
+            jMenuRelatorio.setEnabled(false);
+            jMenuTelas.setEnabled(false);
+
+            jLabelUsuario.setText("");
+
+            TelaLogin tela = new TelaLogin();
+
+            jDesktopPane1.add(tela);
+            tela.setVisible(true);
+        }
+
+    }//GEN-LAST:event_jMenuItemLongoffActionPerformed
+
+    private void jMenuItemLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoginActionPerformed
         // TODO add your handling code here:
         TelaLogin telaLogin = new TelaLogin();
         jDesktopPane1.add(telaLogin);
         telaLogin.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_jMenuItemLoginActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
@@ -348,11 +360,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuBar1MouseExited
 
-    private void jMenu2MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu2MenuSelected
+    private void jMenuOpcaoMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenuOpcaoMenuSelected
         // TODO add your handling code here:
         jMenuBar1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-    }//GEN-LAST:event_jMenu2MenuSelected
+    }//GEN-LAST:event_jMenuOpcaoMenuSelected
 
     private void jPanel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseEntered
         // TODO add your handling code here:
@@ -362,12 +374,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRelatorioActionPerformed
         // TODO add your handling code here
-        
+
         TelaRelatorio tela = new TelaRelatorio();
         jDesktopPane1.add(tela);
         tela.setVisible(true);
     }//GEN-LAST:event_jMenuItemRelatorioActionPerformed
 
+    private void jMenuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAboutActionPerformed
+        // TODO add your handling code here:
+
+        TelaAbout about = new TelaAbout();
+
+        jDesktopPane1.add(about);
+        about.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItemAboutActionPerformed
+
+    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
+        // TODO add your handling code here:
+
+        int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair do sistema?", "Atenção", JOptionPane.YES_NO_OPTION);
+
+        if (sair == JOptionPane.YES_OPTION) {
+
+            System.exit(0);
+
+        }
+
+    }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -404,19 +438,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
     }
-    
-   /* public void TelaLogin(){
+
+    /* public void TelaLogin(){
         Login telaLogin = new Login();
         jDesktopPane1.add(telaLogin);
         telaLogin.setVisible(true);
         
     }*/
-    
-    
     //=======================================================================================
-    
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -426,19 +455,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelTime;
     public static javax.swing.JLabel jLabelUsuario;
-    public static javax.swing.JMenu jMenu1;
-    public static javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    public static javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItemPonto;
+    public static javax.swing.JMenuItem jMenuItemAbout;
+    public static javax.swing.JMenuItem jMenuItemLogin;
+    public static javax.swing.JMenuItem jMenuItemLongoff;
     private javax.swing.JMenuItem jMenuItemRelatorio;
+    public static javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemTelaHora;
+    public static javax.swing.JMenu jMenuOpcao;
+    public static javax.swing.JMenu jMenuRelatorio;
+    public static javax.swing.JMenu jMenuTelas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

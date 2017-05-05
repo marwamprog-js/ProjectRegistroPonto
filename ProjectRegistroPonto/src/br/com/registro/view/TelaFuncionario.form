@@ -131,7 +131,7 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="jButtonComfirmarFuncionario" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="83" max="-2" attributes="0"/>
+                          <Component id="jButtonCancelar" min="-2" pref="83" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonExcluirFuncionario" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -203,7 +203,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonAdicionarFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonExcluirFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonAlterarFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonComfirmarFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -390,7 +390,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonComfirmarFuncionario">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Comfirmar"/>
+            <Property name="text" type="java.lang.String" value="Confirmar"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -420,13 +420,13 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jButtonCancelar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelarActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane3">

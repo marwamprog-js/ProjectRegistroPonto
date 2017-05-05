@@ -606,13 +606,22 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
         long codigoFuncionario = Long.parseLong(jTable1.getValueAt(indiceLinha, 0) + "");
 
-        Funcionario func = null;
+        //Funcionario func = null;
 
-        for (Funcionario funcioanrio : dao.pesquisaPorCodigoFuncionario(codigoFuncionario)) {
+        
+        jComboBoxFuncionario.removeAllItems();
+        
+        
+       List<Funcionario> listaFuncionario = dao.pesquisaPorCodigoFuncionario(codigoFuncionario);
 
-            func = funcioanrio;
-
-        }
+        listaFuncionario.forEach((func) -> {
+            jComboBoxFuncionario.addItem(func);
+        });
+        
+        
+        jComboBoxFuncionario.setSelectedIndex(0);
+        
+        
 
         jFormattedTextFieldHoraEntrada.setText(jTable1.getValueAt(indiceLinha, 1) + "");
         jFormattedTextFieldHoraSaida.setText(jTable1.getValueAt(indiceLinha, 2) + "");
@@ -727,6 +736,11 @@ public class TelaHoras extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraExtra.setText("");
         jFormattedTextFieldData.setText("");
         jTextAreaDescricao.setText("");
+        
+        jComboBoxFuncionario.removeAllItems();
+        jComboBoxFuncionario.addItem("Selecione um funcionário");
+        jComboBoxFuncionario.setSelectedItem("Selecione um funcionário");
+        preencheComboboxFuncionario();
 
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 

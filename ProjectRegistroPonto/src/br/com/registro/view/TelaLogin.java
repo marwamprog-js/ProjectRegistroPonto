@@ -157,9 +157,15 @@ public class TelaLogin extends javax.swing.JInternalFrame {
             if (login.equals(jTextFieldUsuario.getText()) & senha.equals(jPasswordField1.getText())) {
                 //Principal.jLabelUsuario.setText(nome);
                 TelaPrincipal.jLabelUsuario.setText(nome);
-                TelaPrincipal.jMenu1.setEnabled(true);
-                TelaPrincipal.jMenu2.setEnabled(true);
-                TelaPrincipal.jMenu4.setEnabled(true);
+                TelaPrincipal.jMenuTelas.setEnabled(false);
+                TelaPrincipal.jMenuOpcao.setEnabled(true);
+                TelaPrincipal.jMenuRelatorio.setEnabled(false);
+                TelaPrincipal.jMenuItemLogin.setEnabled(false);
+                TelaPrincipal.jMenuItemAbout.setEnabled(true);
+                TelaPrincipal.jMenuItemLongoff.setEnabled(true);
+                TelaPrincipal.jMenuItemSair.setEnabled(true);
+                TelaPrincipal.jMenuTelas.setEnabled(true);
+                TelaPrincipal.jMenuRelatorio.setEnabled(true);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario ou Senha Inválidos", "Erro", JOptionPane.ERROR_MESSAGE);

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.registro.view;
 
 import br.com.registro.entidade.Funcionario;
@@ -62,7 +61,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         jButtonExcluirFuncionario = new javax.swing.JButton();
         jButtonAlterarFuncionario = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel13 = new javax.swing.JLabel();
@@ -71,8 +70,6 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Cadastrar Funcionario");
         setPreferredSize(new java.awt.Dimension(650, 500));
-
-        jPanel1.setBackground(java.awt.SystemColor.inactiveCaptionBorder);
 
         jLabel1.setText("Nome:");
 
@@ -178,7 +175,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonComfirmarFuncionario.setText("Comfirmar");
+        jButtonComfirmarFuncionario.setText("Confirmar");
         jButtonComfirmarFuncionario.setEnabled(false);
         jButtonComfirmarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,11 +201,11 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
 
         jDateChooser1.setEnabled(false);
 
-        jButton1.setText("Cancelar");
-        jButton1.setEnabled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setEnabled(false);
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCancelarActionPerformed(evt);
             }
         });
 
@@ -281,7 +278,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonComfirmarFuncionario)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonExcluirFuncionario)
                         .addGap(18, 18, 18)
@@ -340,7 +337,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdicionarFuncionario)
-                    .addComponent(jButton1)
+                    .addComponent(jButtonCancelar)
                     .addComponent(jButtonExcluirFuncionario)
                     .addComponent(jButtonAlterarFuncionario)
                     .addComponent(jButtonComfirmarFuncionario))
@@ -403,98 +400,146 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
 
     private void jButtonComfirmarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComfirmarFuncionarioActionPerformed
         // TODO add your handling code here:
-        
+
         Funcionario func = new Funcionario();
         FuncionarioDAO fDao = new FuncionarioDAO();
-        
+
         func.setUsuario(jTextFieldUsuario.getText());
         func.setSenha(jPasswordFieldSenha.getText());
         func.setNome(jTextFieldNome.getText());
-        if(jComboBoxCargo.getSelectedItem().equals("Administração")){ 
-            
-                func.setCargo("Administração");
+        if (jComboBoxCargo.getSelectedItem().equals("Administração")) {
+
+            func.setCargo("Administração");
         }
-        
-        if(jComboBoxCargo.getSelectedItem().equals("Produção")){ 
-            
-                func.setCargo("Produção");
+
+        if (jComboBoxCargo.getSelectedItem().equals("Produção")) {
+
+            func.setCargo("Produção");
         }
-        
-        if(jComboBoxCargo.getSelectedItem().equals("Almoxerifado")){ 
-            
-                func.setCargo("Almoxerifado");
+
+        if (jComboBoxCargo.getSelectedItem().equals("Almoxerifado")) {
+
+            func.setCargo("Almoxerifado");
         }
-        
-        if(jComboBoxCargo.getSelectedItem().equals("Recursos Humanos")){ 
-            
-                func.setCargo("Recursos Humanos");
+
+        if (jComboBoxCargo.getSelectedItem().equals("Recursos Humanos")) {
+
+            func.setCargo("Recursos Humanos");
         }
-        
+
         //----
-        
-        if(jComboBoxSetor.getSelectedItem().equals("Setor A")){
-        
+        if (jComboBoxSetor.getSelectedItem().equals("Setor A")) {
+
             func.setSetor("Setor A");
         }
-        
-        if(jComboBoxSetor.getSelectedItem().equals("Setor B")){
-        
+
+        if (jComboBoxSetor.getSelectedItem().equals("Setor B")) {
+
             func.setSetor("Setor B");
         }
-        
-        if(jComboBoxSetor.getSelectedItem().equals("Setor C")){
-        
+
+        if (jComboBoxSetor.getSelectedItem().equals("Setor C")) {
+
             func.setSetor("Setor C");
         }
-        
-        if(jComboBoxSetor.getSelectedItem().equals("Setor D")){
-        
+
+        if (jComboBoxSetor.getSelectedItem().equals("Setor D")) {
+
             func.setSetor("Setor D");
         }
-        
+
         func.setTelefoneCelular(jFormattedTextFieldTelefone.getText());
         func.setCidade(jTextFieldCidade.getText());
         func.setBairro(jTextFieldBairro.getText());
         func.setRua(jTextFieldRua.getText());
         func.setNumero(jSpinnerNRua.getComponentCount());
         func.setDescricao(jTextPaneDescricao.getText());
-        
-        
-        if(fDao.salvar(func)){
-        
+
+        if (fDao.salvar(func)) {
+
             JOptionPane.showMessageDialog(null, "Funcionario Cadastrado com Sucesso!");
-        }
-        
-        else {
-        
-            JOptionPane.showMessageDialog(null, "Funcionario não Cadastrado", "Atenção", 
+
+            jTextFieldBairro.setText("");
+            jTextFieldNome.setText("");
+            jTextFieldCidade.setText("");
+            jTextFieldRua.setText("");
+            jTextFieldUsuario.setText("");
+            jPasswordFieldSenha.setText("");
+
+            jButtonCancelar.setEnabled(false);
+            jButtonComfirmarFuncionario.setEnabled(false);
+            jButtonAdicionarFuncionario.setEnabled(true);
+            jButtonAlterarFuncionario.setEnabled(false);
+            jButtonExcluirFuncionario.setEnabled(false);
+
+            jTextFieldUsuario.setEnabled(false);
+            jTextFieldNome.setEnabled(false);
+            jPasswordFieldSenha.setEnabled(false);
+            jComboBoxCargo.setEnabled(false);
+            jComboBoxSetor.setEnabled(false);
+            jFormattedTextFieldTelefone.setEnabled(false);
+            jTextFieldCidade.setEnabled(false);
+            jTextFieldBairro.setEnabled(false);
+            jTextFieldRua.setEnabled(false);
+            jSpinnerNRua.setEnabled(false);
+            jTextPaneDescricao.setEnabled(false);
+            jDateChooser1.setEnabled(false);
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Funcionario não Cadastrado", "Atenção",
                     JOptionPane.ERROR_MESSAGE);
+
+            jTextFieldBairro.setText("");
+            jTextFieldNome.setText("");
+            jTextFieldCidade.setText("");
+            jTextFieldRua.setText("");
+            jTextFieldUsuario.setText("");
+            jPasswordFieldSenha.setText("");
+
+            jButtonCancelar.setEnabled(false);
+            jButtonComfirmarFuncionario.setEnabled(false);
+            jButtonAdicionarFuncionario.setEnabled(true);
+            jButtonAlterarFuncionario.setEnabled(false);
+            jButtonExcluirFuncionario.setEnabled(false);
+
+            jTextFieldUsuario.setEnabled(false);
+            jTextFieldNome.setEnabled(false);
+            jPasswordFieldSenha.setEnabled(false);
+            jComboBoxCargo.setEnabled(false);
+            jComboBoxSetor.setEnabled(false);
+            jFormattedTextFieldTelefone.setEnabled(false);
+            jTextFieldCidade.setEnabled(false);
+            jTextFieldBairro.setEnabled(false);
+            jTextFieldRua.setEnabled(false);
+            jSpinnerNRua.setEnabled(false);
+            jTextPaneDescricao.setEnabled(false);
+            jDateChooser1.setEnabled(false);
+
         }
-        
-        
+
+
     }//GEN-LAST:event_jButtonComfirmarFuncionarioActionPerformed
 
     private void jButtonExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirFuncionarioActionPerformed
         // TODO add your handling code here:
-        
+
         excluirFuncionario();
     }//GEN-LAST:event_jButtonExcluirFuncionarioActionPerformed
 
-    private void excluirFuncionario(){
-        
+    private void excluirFuncionario() {
+
         Funcionario func = new Funcionario();
         FuncionarioDAO dao = new FuncionarioDAO();
-        
-        
-        if (jTextFieldBairro.getText().isEmpty() || jTextFieldNome.getText().isEmpty() ||
-                jTextFieldCidade.getText().isEmpty() || jTextFieldRua.getText().isEmpty()
-                ||jTextFieldUsuario.getText().isEmpty()) {
-            
-            
+
+        if (jTextFieldBairro.getText().isEmpty() || jTextFieldNome.getText().isEmpty()
+                || jTextFieldCidade.getText().isEmpty() || jTextFieldRua.getText().isEmpty()
+                || jTextFieldUsuario.getText().isEmpty()) {
+
             JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio", "Atenção", JOptionPane.ERROR_MESSAGE);
-            
+
         } else {
-            
+
             func.setBairro(jTextFieldBairro.getText());
             func.setNome(jTextFieldNome.getText());
             func.setCidade(jTextFieldCidade.getText());
@@ -505,11 +550,10 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
             func.setSetor(jComboBoxSetor.getSelectedItem().toString());
             func.setNumero(Integer.parseInt(jSpinnerNRua.toString()));
 
-            
             boolean result = dao.excluirFuncionario(func);
-            
+
             if (result) {
-                
+
                 JOptionPane.showMessageDialog(null, "Registro deletado com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
                 jTextFieldBairro.setText("");
                 jTextFieldNome.setText("");
@@ -517,31 +561,102 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
                 jTextFieldRua.setText("");
                 jTextFieldUsuario.setText("");
                 jPasswordFieldSenha.setText("");
-                
-                
-                
+
+                jButtonCancelar.setEnabled(false);
+                jButtonComfirmarFuncionario.setEnabled(false);
+                jButtonAdicionarFuncionario.setEnabled(true);
+                jButtonAlterarFuncionario.setEnabled(false);
+                jButtonExcluirFuncionario.setEnabled(false);
+
+                jTextFieldUsuario.setEnabled(false);
+                jTextFieldNome.setEnabled(false);
+                jPasswordFieldSenha.setEnabled(false);
+                jComboBoxCargo.setEnabled(false);
+                jComboBoxSetor.setEnabled(false);
+                jFormattedTextFieldTelefone.setEnabled(false);
+                jTextFieldCidade.setEnabled(false);
+                jTextFieldBairro.setEnabled(false);
+                jTextFieldRua.setEnabled(false);
+                jSpinnerNRua.setEnabled(false);
+                jTextPaneDescricao.setEnabled(false);
+                jDateChooser1.setEnabled(false);
+
             } else {
-                
+
                 JOptionPane.showMessageDialog(null, "Erro ao deletar.", "Atenção", JOptionPane.ERROR_MESSAGE);
-                
+
+                jTextFieldBairro.setText("");
+                jTextFieldNome.setText("");
+                jTextFieldCidade.setText("");
+                jTextFieldRua.setText("");
+                jTextFieldUsuario.setText("");
+                jPasswordFieldSenha.setText("");
+
+                jButtonCancelar.setEnabled(false);
+                jButtonComfirmarFuncionario.setEnabled(false);
+                jButtonAdicionarFuncionario.setEnabled(true);
+                jButtonAlterarFuncionario.setEnabled(false);
+                jButtonExcluirFuncionario.setEnabled(false);
+
+                jTextFieldUsuario.setEnabled(false);
+                jTextFieldNome.setEnabled(false);
+                jPasswordFieldSenha.setEnabled(false);
+                jComboBoxCargo.setEnabled(false);
+                jComboBoxSetor.setEnabled(false);
+                jFormattedTextFieldTelefone.setEnabled(false);
+                jTextFieldCidade.setEnabled(false);
+                jTextFieldBairro.setEnabled(false);
+                jTextFieldRua.setEnabled(false);
+                jSpinnerNRua.setEnabled(false);
+                jTextPaneDescricao.setEnabled(false);
+                jDateChooser1.setEnabled(false);
+
             }
-            
-            
+
         }
     }
-    
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+        jTextFieldBairro.setText("");
+        jTextFieldNome.setText("");
+        jTextFieldCidade.setText("");
+        jTextFieldRua.setText("");
+        jTextFieldUsuario.setText("");
+        jPasswordFieldSenha.setText("");
+
+        jButtonCancelar.setEnabled(false);
+        jButtonComfirmarFuncionario.setEnabled(false);
+        jButtonAdicionarFuncionario.setEnabled(true);
+        jButtonAlterarFuncionario.setEnabled(false);
+        jButtonExcluirFuncionario.setEnabled(false);
+
+        jTextFieldUsuario.setEnabled(false);
+        jTextFieldNome.setEnabled(false);
+        jPasswordFieldSenha.setEnabled(false);
+        jComboBoxCargo.setEnabled(false);
+        jComboBoxSetor.setEnabled(false);
+        jFormattedTextFieldTelefone.setEnabled(false);
+        jTextFieldCidade.setEnabled(false);
+        jTextFieldBairro.setEnabled(false);
+        jTextFieldRua.setEnabled(false);
+        jSpinnerNRua.setEnabled(false);
+        jTextPaneDescricao.setEnabled(false);
+        jDateChooser1.setEnabled(false);
+
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAdicionarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarFuncionarioActionPerformed
         // TODO add your handling code here:
-        
-        jButton1.setVisible(true); 
-        jButtonComfirmarFuncionario.setVisible(true);
-        jButtonAdicionarFuncionario.setVisible(false);
-        
+
+        jButtonCancelar.setEnabled(true);
+        jButtonComfirmarFuncionario.setEnabled(true);
+        jButtonAdicionarFuncionario.setEnabled(false);
+        jButtonAlterarFuncionario.setEnabled(false);
+        jButtonExcluirFuncionario.setEnabled(false);
+
         jTextFieldUsuario.setEnabled(true);
         jTextFieldNome.setEnabled(true);
         jPasswordFieldSenha.setEnabled(true);
@@ -554,18 +669,15 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         jSpinnerNRua.setEnabled(true);
         jTextPaneDescricao.setEnabled(true);
         jDateChooser1.setEnabled(true);
-        
+
     }//GEN-LAST:event_jButtonAdicionarFuncionarioActionPerformed
 
     private void jButtonAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarFuncionarioActionPerformed
         // TODO add your handling c..33ode here:
-        
-        
+
         FuncionarioDAO dao = new FuncionarioDAO();
-        Funcionario func = new Funcionario ();
-        
-        
-        
+        Funcionario func = new Funcionario();
+
         func.setBairro(jTextFieldBairro.getText());
         func.setNome(jTextFieldNome.getText());
         func.setCidade(jTextFieldCidade.getText());
@@ -576,29 +688,23 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         func.setCargo(jComboBoxCargo.getSelectedItem().toString());
         func.setSetor(jComboBoxSetor.getSelectedItem().toString());
         func.setNumero(Integer.parseInt(jSpinnerNRua.toString()));
-        
-       
-        
-        
-        if(dao.updateFunconario(func)){
-            
+
+        if (dao.updateFunconario(func)) {
+
             JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso!");
-        }else{
-            
-            JOptionPane.showMessageDialog(null,"Erro ao Atualizar!!");
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Erro ao Atualizar!!");
         }
-        
-        
-            
-             
+
 
     }//GEN-LAST:event_jButtonAlterarFuncionarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAdicionarFuncionario;
     private javax.swing.JButton jButtonAlterarFuncionario;
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonComfirmarFuncionario;
     private javax.swing.JButton jButtonExcluirFuncionario;
     private javax.swing.JComboBox jComboBoxCargo;
