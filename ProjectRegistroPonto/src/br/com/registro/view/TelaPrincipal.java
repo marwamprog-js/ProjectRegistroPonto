@@ -64,7 +64,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemRelatorio = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PointerControl - Principal");
@@ -272,13 +272,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Relatórios ");
 
-        jMenuItem1.setText("Relatórios de Horas");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemRelatorio.setText("Relatórios de Horas");
+        jMenuItemRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemRelatorioActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem1);
+        jMenu4.add(jMenuItemRelatorio);
 
         jMenuBar1.add(jMenu4);
 
@@ -359,13 +359,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jPanel2MouseEntered
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItemRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRelatorioActionPerformed
         // TODO add your handling code here
         
-        TelaHoras telaHoras = new TelaHoras();
-        jDesktopPane1.add(telaHoras);
-        telaHoras.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        TelaRelatorio tela = new TelaRelatorio();
+        jDesktopPane1.add(tela);
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItemRelatorioActionPerformed
 
 
     /**
@@ -430,13 +430,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemPonto;
+    private javax.swing.JMenuItem jMenuItemRelatorio;
     private javax.swing.JMenuItem jMenuItemTelaHora;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

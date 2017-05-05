@@ -25,12 +25,25 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class RelatorioDAO {
 
+    public Connection getConexao() throws ClassNotFoundException {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/registroponto", "root", "deus@marwam");
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(RelatorioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
     public void geraRelatorio(Long idFuncionario) {
 
         //Pesquise o que é HashMap
         HashMap filtro = new HashMap();  //Pesquise o que é HashMap    
         filtro.put("idFuncionario", idFuncionario);
-        
 
         try {
 
@@ -43,7 +56,7 @@ public class RelatorioDAO {
 
             //---------- Desenhando o relatorio --------- // 
             JasperPrint print = JasperFillManager.fillReport(relatorio, filtro, getConexao());
-           
+
             //Cria uma janela para exibir o relatorio
             JasperViewer view = new JasperViewer(print, false);
             view.setVisible(true);
@@ -52,20 +65,6 @@ public class RelatorioDAO {
             Logger.getLogger(RelatorioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
-
-    public Connection getConexao() throws ClassNotFoundException {
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/fazenda", "root", "admin");
-
-        } catch (SQLException ex) {
-           
-            Logger.getLogger(RelatorioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
     }
 
 }

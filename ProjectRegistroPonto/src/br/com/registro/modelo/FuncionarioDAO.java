@@ -60,13 +60,14 @@ public class FuncionarioDAO {
         }
     }
     public List<Funcionario> listaFuncionario(){
+        
         List<Funcionario>listaFuncionario = new ArrayList<>();
         session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Criteria criterio = session.createCriteria(Funcionario.class);
         criterio.addOrder(Order.asc("nome"));
         listaFuncionario = criterio.list();
-        return  listaFuncionario();
+        return  listaFuncionario;
     }
     
     public List<Funcionario> pesquisaPorCodigoFuncionario(Long codigo){

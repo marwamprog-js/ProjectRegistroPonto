@@ -11,6 +11,7 @@ import br.com.registro.modelo.ControleDAO;
 import br.com.registro.modelo.FuncionarioDAO;
 import br.com.registro.modelo.TableModelControle;
 import br.com.registro.util.HoraUtil;
+import com.mysql.fabric.xmlrpc.base.Data;
 import java.awt.Color;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -32,15 +33,14 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
     public TableModelControle tabelaControle;
 
+    
     /**
      * Creates new form Horas
      */
     public TelaHoras() {
         initComponents();
 
-        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        jFormattedTextFieldData.setText(data.format(date));
+        
 
         preencheComboboxFuncionario();
 
@@ -428,6 +428,11 @@ public class TelaHoras extends javax.swing.JInternalFrame {
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         // TODO add your handling code here:
 
+        
+        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        jFormattedTextFieldData.setText(data.format(date));
+        
         jButtonAdicionar.setEnabled(false);
         jButtonConfirmar.setEnabled(true);
         jButtonCancelar.setEnabled(true);
@@ -451,38 +456,44 @@ public class TelaHoras extends javax.swing.JInternalFrame {
         ControleDAO dao = new ControleDAO();
         Controle control = new Controle();
         HoraUtil util = new HoraUtil();
+        
+        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String d = data.format(date);
+        
+        int indiceLinha = jTable1.getSelectedRow();
 
         if (jComboBoxFuncionario.getSelectedItem().equals("Selecione um funcioário") || jFormattedTextFieldHoraEntrada.getText().isEmpty()
                 || jFormattedTextFieldHoraSaida.getText().isEmpty() || jFormattedTextFieldData.getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "Campos obrigatórios vazios", "Atenção", JOptionPane.INFORMATION_MESSAGE);
 
-        } else if(jFormattedTextFieldData.getText().equals(jFormattedTextFieldData.getText()))  {
+        } else if (jFormattedTextFieldData.getText().equals(d)) {
 
-            JOptionPane.showMessageDialog(null, "Funcionário já registro ponto nesta data", "Atenção", JOptionPane.INFORMATION_MESSAGE);
-            
+            JOptionPane.showMessageDialog(null, "Funcionário já registrou ponto nesta data", "Atenção", JOptionPane.ERROR_MESSAGE);
+
             jButtonAdicionar.setEnabled(true);
-                    jButtonConfirmar.setEnabled(false);
-                    jButtonCancelar.setEnabled(false);
-                    jButtonAtualizar.setEnabled(false);
-                    jButtonExcluir.setEnabled(false);
+            jButtonConfirmar.setEnabled(false);
+            jButtonCancelar.setEnabled(false);
+            jButtonAtualizar.setEnabled(false);
+            jButtonExcluir.setEnabled(false);
 
-                    jComboBoxFuncionario.setEnabled(false);
-                    jFormattedTextFieldHoraEntrada.setEnabled(false);
+            jComboBoxFuncionario.setEnabled(false);
+            jFormattedTextFieldHoraEntrada.setEnabled(false);
 
-                    jFormattedTextFieldHoraSaida.setEnabled(false);
-                    jFormattedTextFieldHoraExtra.setEnabled(false);
-                    jFormattedTextFieldData.setEnabled(false);
-                    jTextAreaDescricao.setEnabled(false);
+            jFormattedTextFieldHoraSaida.setEnabled(false);
+            jFormattedTextFieldHoraExtra.setEnabled(false);
+            jFormattedTextFieldData.setEnabled(false);
+            jTextAreaDescricao.setEnabled(false);
 
-                    jComboBoxFuncionario.setSelectedItem("Selecione um funcionário");
-                    jFormattedTextFieldHoraEntrada.setText("");
+            jComboBoxFuncionario.setSelectedItem("Selecione um funcionário");
+            jFormattedTextFieldHoraEntrada.setText("");
 
-                    jFormattedTextFieldHoraSaida.setText("");
-                    jFormattedTextFieldHoraExtra.setText("");
-                    jFormattedTextFieldData.setText("");
-                    jTextAreaDescricao.setText("");
-            
+            jFormattedTextFieldHoraSaida.setText("");
+            jFormattedTextFieldHoraExtra.setText("");
+            jFormattedTextFieldData.setText("");
+            jTextAreaDescricao.setText("");
+
         } else {
 
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -761,7 +772,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
                 int hora = horaLocal - 540;
 
                 control.setHoraExtra(hora);
-                
+
                 control.setStatus(util.informaAtraso(horaLocal) + "");
                 control.setDescricao(jTextAreaDescricao.getText());
 

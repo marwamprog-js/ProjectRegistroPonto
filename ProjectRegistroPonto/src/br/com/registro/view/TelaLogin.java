@@ -16,7 +16,9 @@ import javax.swing.JOptionPane;
  * @author user_mw
  */
 public class TelaLogin extends javax.swing.JInternalFrame {
-
+    
+    
+    
     /**
      * Creates new form Login
      */
@@ -136,6 +138,8 @@ public class TelaLogin extends javax.swing.JInternalFrame {
         
         } else {
 
+            cadastraRoot();
+            
             FuncionarioDAO dao = new FuncionarioDAO();
             List<Funcionario> listaFuncionario = new ArrayList<>();
 
@@ -165,6 +169,41 @@ public class TelaLogin extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
+    private void cadastraRoot(){
+        
+        Funcionario func = new Funcionario();
+        FuncionarioDAO dao = new FuncionarioDAO();
+        
+        
+        func.setNome("Administrador");
+        func.setCargo("");
+        func.setBairro("");
+        func.setCidade("");
+        func.setData("");
+        func.setDescricao("");
+        func.setNumero(0);
+        func.setRua("");
+        func.setSenha("123");
+        func.setSetor("");
+        func.setTelefoneCelular("");
+        func.setUsuario("root");
+        
+        String usuario = "";
+        
+        for(Funcionario f : dao.identificaUsuario(func.getUsuario(), func.getSenha())){
+            
+            usuario = f.getUsuario();
+            
+        }
+        
+        if(!usuario.equals("root")){
+            dao.salvar(func);
+        }
+        
+        
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogin;
