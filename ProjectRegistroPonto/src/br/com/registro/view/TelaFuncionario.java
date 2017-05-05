@@ -558,7 +558,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonAdicionarFuncionarioActionPerformed
 
     private void jButtonAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarFuncionarioActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling c..ode here:
         
         
         FuncionarioDAO dao = new FuncionarioDAO();
