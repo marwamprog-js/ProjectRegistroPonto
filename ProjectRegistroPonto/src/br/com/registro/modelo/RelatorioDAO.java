@@ -48,7 +48,7 @@ public class RelatorioDAO {
         try {
 
             //Pegando o relatorio e convertendo em conjunto de bits (Pega relatorio) --> Caminho do arquivo
-            InputStream inputStream = getClass().getResourceAsStream("/Relatorios/Relatório.jasper");
+            InputStream inputStream = getClass().getResourceAsStream("/Relatorios/RelatorioSGR.jasper");
 
             JasperReport relatorio;
 

@@ -157,6 +157,9 @@ public class TelaLogin extends javax.swing.JInternalFrame {
             if (login.equals(jTextFieldUsuario.getText()) & senha.equals(jPasswordField1.getText())) {
                 //Principal.jLabelUsuario.setText(nome);
                 TelaPrincipal.jLabelUsuario.setText(nome);
+                TelaPrincipal.jMenu1.setEnabled(true);
+                TelaPrincipal.jMenu2.setEnabled(true);
+                TelaPrincipal.jMenu4.setEnabled(true);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario ou Senha Inválidos", "Erro", JOptionPane.ERROR_MESSAGE);
