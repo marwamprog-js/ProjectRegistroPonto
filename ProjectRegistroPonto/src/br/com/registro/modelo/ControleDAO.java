@@ -21,7 +21,7 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author user_mw
+ * @author user_mwj
  */
 public class ControleDAO {
 
