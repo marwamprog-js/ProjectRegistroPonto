@@ -40,6 +40,14 @@ public class Funcionario {
     @OneToMany(targetEntity = Controle.class)
     private List<Controle> listaSetores;
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
+    
+    
+
     public Long getIdFuncionario() {
         return idFuncionario;
     }

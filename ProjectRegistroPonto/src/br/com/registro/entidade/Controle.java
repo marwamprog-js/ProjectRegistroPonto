@@ -6,6 +6,7 @@
 package br.com.registro.entidade;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -26,11 +28,9 @@ public class Controle {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long idControle;
-   private String horaEntrada;
-   private String horaAlmoco;
-   private String horaRetornoAlmoco;
-   private String horaSaida;
-   private String horaExtra;
+   private Timestamp horaEntrada;
+   private Timestamp horaSaida;
+   private int horaExtra;
    private String data;
    private String descricao;
    private String status;
@@ -46,43 +46,27 @@ public class Controle {
         this.idControle = idControle;
     }
 
-    public String getHoraEntrada() {
+    public Timestamp getHoraEntrada() {
         return horaEntrada;
     }
 
-    public void setHoraEntrada(String horaEntrada) {
+    public void setHoraEntrada(Timestamp horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
 
-    public String getHoraAlmoco() {
-        return horaAlmoco;
-    }
-
-    public void setHoraAlmoco(String horaAlmoco) {
-        this.horaAlmoco = horaAlmoco;
-    }
-
-    public String getHoraRetornoAlmoco() {
-        return horaRetornoAlmoco;
-    }
-
-    public void setHoraRetornoAlmoco(String horaRetornoAlmoco) {
-        this.horaRetornoAlmoco = horaRetornoAlmoco;
-    }
-
-    public String getHoraSaida() {
+    public Timestamp getHoraSaida() {
         return horaSaida;
     }
 
-    public void setHoraSaida(String horaSaida) {
+    public void setHoraSaida(Timestamp horaSaida) {
         this.horaSaida = horaSaida;
     }
 
-    public String getHoraExtra() {
+    public int getHoraExtra() {
         return horaExtra;
     }
 
-    public void setHoraExtra(String horaExtra) {
+    public void setHoraExtra(int horaExtra) {
         this.horaExtra = horaExtra;
     }
 
@@ -93,6 +77,10 @@ public class Controle {
     public void setData(String data) {
         this.data = data;
     }
+
+    
+
+   
 
     public String getDescricao() {
         return descricao;
@@ -118,7 +106,8 @@ public class Controle {
         this.funcionario = funcionario;
     }
 
-     
-    
+   
+   
+   
     
 }

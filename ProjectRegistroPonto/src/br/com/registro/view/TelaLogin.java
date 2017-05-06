@@ -126,7 +126,7 @@ public class TelaLogin extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        pack();
+        setBounds(200, 80, 403, 306);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
@@ -152,6 +152,7 @@ public class TelaLogin extends javax.swing.JInternalFrame {
 
             if (login.equals(jTextFieldUsuario.getText()) & senha.equals(jPasswordField1.getText())) {
                 //Principal.jLabelUsuario.setText(nome);
+                TelaPrincipal.jLabelUsuario.setText(nome);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario ou Senha Inválidos", "Erro", JOptionPane.ERROR_MESSAGE);

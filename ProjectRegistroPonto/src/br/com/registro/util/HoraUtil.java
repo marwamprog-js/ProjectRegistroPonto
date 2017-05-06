@@ -5,7 +5,6 @@
  */
 package br.com.registro.util;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -22,4 +21,18 @@ public class HoraUtil implements ActionListener {
         //TelaRegistroPonto.jLabelHora.setText(String.format("%1$tH : %1$tM : %1$tS", now));
     }
 
+    public String informaAtraso(int horaLocal) {
+        
+        String statusAtraso = null;
+        
+        if (horaLocal == 540) {
+            statusAtraso = "Tempo correto";
+        } else if (horaLocal > 540) {
+            statusAtraso = "Hora extra";
+        } else if (horaLocal < 540) {
+            statusAtraso = "Atrasado";
+        }
+        return statusAtraso;
+
+    }
 }

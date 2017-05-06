@@ -19,8 +19,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableModelControle extends AbstractTableModel{
     
-    private final String[] NOME_COLUNA_CLIENTE = {"Código", "Hora de Entrada", "Hora de Almoço", "Hora Retorno Almoço", "Hora de saida"
-        ,"Status", "Data", "Descrição"};  
+    private final String[] NOME_COLUNA_CLIENTE = {"Código", "Hora de Entrada","Hora de saida","Status", "Hora Extra","Data", "Descrição"};  
     private List<Controle> listaTableControle;
     
     SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
@@ -91,16 +90,14 @@ public class TableModelControle extends AbstractTableModel{
             case 1:
                 return hora.format(this.listaTableControle.get(rowIndex).getHoraEntrada());
             case 2:
-                return hora.format(this.listaTableControle.get(rowIndex).getHoraAlmoco());
-            case 3:
-                return hora.format(this.listaTableControle.get(rowIndex).getHoraRetornoAlmoco());
-            case 4:
                 return hora.format(this.listaTableControle.get(rowIndex).getHoraSaida());
-            case 5:
+            case 3:
                 return this.listaTableControle.get(rowIndex).getStatus();
+            case 4:
+                return this.listaTableControle.get(rowIndex).getHoraExtra();
+            case 5:
+                return this.listaTableControle.get(rowIndex).getData();
             case 6:
-                return data.format(this.listaTableControle.get(rowIndex).getData());
-            case 7:
                 return this.listaTableControle.get(rowIndex).getDescricao();
             default:
                 return this.listaTableControle.get(rowIndex);

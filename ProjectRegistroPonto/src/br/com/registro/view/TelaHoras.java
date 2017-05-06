@@ -10,7 +10,9 @@ import br.com.registro.entidade.Funcionario;
 import br.com.registro.modelo.ControleDAO;
 import br.com.registro.modelo.FuncionarioDAO;
 import br.com.registro.modelo.TableModelControle;
+import br.com.registro.util.HoraUtil;
 import java.awt.Color;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +21,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.joda.time.DateTime;
+import org.joda.time.Period;
 
 /**
  *
@@ -42,8 +46,8 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
         //========================
         //--Tabela
-        /*this.tabelaControle = new TableModelControle();
-        this.jTable1.setModel(tabelaControle);*/
+        this.tabelaControle = new TableModelControle();
+        this.jTable1.setModel(tabelaControle);
     }
 
     /**
@@ -121,6 +125,9 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
         jDateChooserDataPesquisa.setEnabled(false);
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -132,6 +139,8 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -161,7 +170,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
         jLabel10.setText("Data.:");
 
         try {
-            jFormattedTextFieldHoraEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+            jFormattedTextFieldHoraEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -173,7 +182,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
         });
 
         try {
-            jFormattedTextFieldHoraSaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+            jFormattedTextFieldHoraSaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -186,11 +195,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Hora Extra.:");
 
-        try {
-            jFormattedTextFieldHoraExtra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jFormattedTextFieldHoraExtra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jFormattedTextFieldHoraExtra.setEnabled(false);
         jFormattedTextFieldHoraExtra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -417,7 +422,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setBounds(100, 10, 800, 483);
+        setBounds(0, 20, 800, 483);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
@@ -431,10 +436,10 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
         jComboBoxFuncionario.setEnabled(true);
         jFormattedTextFieldHoraEntrada.setEnabled(true);
-        
+
         jFormattedTextFieldHoraSaida.setEnabled(true);
         jFormattedTextFieldHoraExtra.setEnabled(false);
-        jTextFieldStatus.setEnabled(true);
+        jTextFieldStatus.setEnabled(false);
         jFormattedTextFieldData.setEnabled(true);
         jTextAreaDescricao.setEnabled(true);
 
@@ -445,130 +450,178 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
         ControleDAO dao = new ControleDAO();
         Controle control = new Controle();
-        
-        
+        HoraUtil util = new HoraUtil();
+
         if (jComboBoxFuncionario.getSelectedItem().equals("Selecione um funcioário") || jFormattedTextFieldHoraEntrada.getText().isEmpty()
                 || jFormattedTextFieldHoraSaida.getText().isEmpty() || jFormattedTextFieldData.getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "Campos obrigatórios vazios", "Atenção", JOptionPane.INFORMATION_MESSAGE);
 
+        } else if(jFormattedTextFieldData.getText().equals(jFormattedTextFieldData.getText()))  {
+
+            JOptionPane.showMessageDialog(null, "Funcionário já registro ponto nesta data", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+            
+            jButtonAdicionar.setEnabled(true);
+                    jButtonConfirmar.setEnabled(false);
+                    jButtonCancelar.setEnabled(false);
+                    jButtonAtualizar.setEnabled(false);
+                    jButtonExcluir.setEnabled(false);
+
+                    jComboBoxFuncionario.setEnabled(false);
+                    jFormattedTextFieldHoraEntrada.setEnabled(false);
+
+                    jFormattedTextFieldHoraSaida.setEnabled(false);
+                    jFormattedTextFieldHoraExtra.setEnabled(false);
+                    jFormattedTextFieldData.setEnabled(false);
+                    jTextAreaDescricao.setEnabled(false);
+
+                    jComboBoxFuncionario.setSelectedItem("Selecione um funcionário");
+                    jFormattedTextFieldHoraEntrada.setText("");
+
+                    jFormattedTextFieldHoraSaida.setText("");
+                    jFormattedTextFieldHoraExtra.setText("");
+                    jFormattedTextFieldData.setText("");
+                    jTextAreaDescricao.setText("");
+            
         } else {
 
-            try {
-                control.setFuncionario((Funcionario) jComboBoxFuncionario.getSelectedItem());
-                control.setHoraEntrada(jFormattedTextFieldHoraEntrada.getText());
-                
-                control.setHoraSaida(jFormattedTextFieldHoraSaida.getText());
-                
-                //control.setDataCadastro(jFormattedTextFieldData.getText());
-                control.setStatus(jTextFieldStatus.getText());
-                control.setDescricao(jTextAreaDescricao.getText());
-                
-                
-                DateFormat hora = new SimpleDateFormat("hh:mm");
-                
-                String horaEntradaOne = jFormattedTextFieldHoraEntrada.getText();
-                Date horaOneEntrada = null;
-                horaOneEntrada = hora.parse(horaEntradaOne);
-                
-                                
-                String horaSaidaOne = jFormattedTextFieldHoraSaida.getText();
-                Date horaOneSaida = null;
-                horaOneSaida = hora.parse(horaSaidaOne);
-                
-                
-                
-                String totalHora = "09:00";
-                Date horaTotal = null;
-                horaTotal = hora.parse(totalHora);
-                
-                
-                String resultadoSoma = hora.format(horaOneSaida.getTime() - horaOneEntrada.getTime());
-                
-                String horaResultadoSoma = resultadoSoma;
-                Date horaSoma = null;
-                horaSoma = hora.parse(horaResultadoSoma);
-                
-                String resultado = hora.format(horaSoma.getTime() - horaTotal.getTime());
-                
-                control.setHoraExtra(resultado);
-                
-                
-                if (dao.savar(control)) {
-                    
-                    JOptionPane.showMessageDialog(null, "Ponto registrado com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
-                    
-                    jButtonAdicionar.setEnabled(true);
-                    jButtonConfirmar.setEnabled(false);
-                    jButtonCancelar.setEnabled(false);
-                    jButtonAtualizar.setEnabled(false);
-                    jButtonExcluir.setEnabled(false);
-                    
-                    jComboBoxFuncionario.setEnabled(false);
-                    jFormattedTextFieldHoraEntrada.setEnabled(false);
-                    
-                    jFormattedTextFieldHoraSaida.setEnabled(false);
-                    jFormattedTextFieldHoraExtra.setEnabled(false);
-                    jFormattedTextFieldData.setEnabled(false);
-                    jTextAreaDescricao.setEnabled(false);
-                    
-                    jComboBoxFuncionario.setSelectedItem("Selecione um funcionário");
-                    jFormattedTextFieldHoraEntrada.setText("");
-                    
-                    jFormattedTextFieldHoraSaida.setText("");
-                    jFormattedTextFieldHoraExtra.setText("");
-                    jFormattedTextFieldData.setText("");
-                    jTextAreaDescricao.setText("");
-                    
-                }else{
-                    
-                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar.", "Atenção", JOptionPane.ERROR_MESSAGE);
-                    
-                    jButtonAdicionar.setEnabled(true);
-                    jButtonConfirmar.setEnabled(false);
-                    jButtonCancelar.setEnabled(false);
-                    jButtonAtualizar.setEnabled(false);
-                    jButtonExcluir.setEnabled(false);
-                    
-                    jComboBoxFuncionario.setEnabled(false);
-                    jFormattedTextFieldHoraEntrada.setEnabled(false);
-                    
-                    jFormattedTextFieldHoraSaida.setEnabled(false);
-                    jFormattedTextFieldHoraExtra.setEnabled(false);
-                    jFormattedTextFieldData.setEnabled(false);
-                    jTextAreaDescricao.setEnabled(false);
-                    
-                    jComboBoxFuncionario.setSelectedItem("Selecione um funcionário");
-                    jFormattedTextFieldHoraEntrada.setText("");
-                    
-                    jFormattedTextFieldHoraSaida.setText("");
-                    jFormattedTextFieldHoraExtra.setText("");
-                    jFormattedTextFieldData.setText("");
-                    jTextAreaDescricao.setText("");
-                    
-                }
-            } catch (ParseException ex) {
-                Logger.getLogger(TelaHoras.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
+            Date dataInicial = null;
+            Date dataFinal = null;
+
+            try {
+
+                dataInicial = format.parse(jFormattedTextFieldData.getText() + " " + jFormattedTextFieldHoraEntrada.getText());
+                dataFinal = format.parse(jFormattedTextFieldData.getText() + " " + jFormattedTextFieldHoraSaida.getText());
+
+                Timestamp inicialStamp = new Timestamp(dataInicial.getTime());
+                Timestamp finalStamp = new Timestamp(dataFinal.getTime());
+
+                control.setHoraEntrada(inicialStamp);
+                control.setHoraSaida(finalStamp);
+
+                DateTime dataHoraEntrada = new DateTime(inicialStamp);
+                DateTime dataHoraSaida = new DateTime(finalStamp);
+
+                Period tempoTrabalhado = new Period(dataHoraEntrada, dataHoraSaida);
+
+                int horaLocal = tempoTrabalhado.getMinutes()
+                        + tempoTrabalhado.getHours() * 60
+                        + tempoTrabalhado.getDays() * 1440;
+
+                int hora = horaLocal - 540;
+
+                control.setHoraExtra(hora);
+
+                control.setFuncionario((Funcionario) jComboBoxFuncionario.getSelectedItem());
+
+                control.setData(jFormattedTextFieldData.getText());
+                control.setStatus(util.informaAtraso(horaLocal) + "");
+                control.setDescricao(jTextAreaDescricao.getText());
+
+                if (dao.savar(control)) {
+
+                    JOptionPane.showMessageDialog(null, "Ponto registrado com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+
+                    jButtonAdicionar.setEnabled(true);
+                    jButtonConfirmar.setEnabled(false);
+                    jButtonCancelar.setEnabled(false);
+                    jButtonAtualizar.setEnabled(false);
+                    jButtonExcluir.setEnabled(false);
+
+                    jComboBoxFuncionario.setEnabled(false);
+                    jFormattedTextFieldHoraEntrada.setEnabled(false);
+
+                    jFormattedTextFieldHoraSaida.setEnabled(false);
+                    jFormattedTextFieldHoraExtra.setEnabled(false);
+                    jFormattedTextFieldData.setEnabled(false);
+                    jTextAreaDescricao.setEnabled(false);
+
+                    jComboBoxFuncionario.setSelectedItem("Selecione um funcionário");
+                    jFormattedTextFieldHoraEntrada.setText("");
+
+                    jFormattedTextFieldHoraSaida.setText("");
+                    jFormattedTextFieldHoraExtra.setText("");
+                    jFormattedTextFieldData.setText("");
+                    jTextAreaDescricao.setText("");
+
+                    //========================
+                    //--Tabela
+                    this.tabelaControle = new TableModelControle();
+                    this.jTable1.setModel(tabelaControle);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar.", "Atenção", JOptionPane.ERROR_MESSAGE);
+
+                    jButtonAdicionar.setEnabled(true);
+                    jButtonConfirmar.setEnabled(false);
+                    jButtonCancelar.setEnabled(false);
+                    jButtonAtualizar.setEnabled(false);
+                    jButtonExcluir.setEnabled(false);
+
+                    jComboBoxFuncionario.setEnabled(false);
+                    jFormattedTextFieldHoraEntrada.setEnabled(false);
+
+                    jFormattedTextFieldHoraSaida.setEnabled(false);
+                    jFormattedTextFieldHoraExtra.setEnabled(false);
+                    jFormattedTextFieldData.setEnabled(false);
+                    jTextAreaDescricao.setEnabled(false);
+
+                    jComboBoxFuncionario.setSelectedItem("Selecione um funcionário");
+                    jFormattedTextFieldHoraEntrada.setText("");
+
+                    jFormattedTextFieldHoraSaida.setText("");
+                    jFormattedTextFieldHoraExtra.setText("");
+                    jFormattedTextFieldData.setText("");
+                    jTextAreaDescricao.setText("");
+                }
+
+            } catch (Exception e) {
+            }
         }
+
 
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
 
+        //Funcionario func = new Funcionario();
+        FuncionarioDAO dao = new FuncionarioDAO();
+
         int indiceLinha = jTable1.getSelectedRow();
-        
-        
-        jTextFieldStatus.setText(jTable1.getValueAt(indiceLinha, 5).toString());
 
-        jTextFieldStatus.setEnabled(true);
+        long codigoFuncionario = Long.parseLong(jTable1.getValueAt(indiceLinha, 0) + "");
 
+        Funcionario func = null;
+
+        for (Funcionario funcioanrio : dao.pesquisaPorCodigoFuncionario(codigoFuncionario)) {
+
+            func = funcioanrio;
+
+        }
+
+        jFormattedTextFieldHoraEntrada.setText(jTable1.getValueAt(indiceLinha, 1) + "");
+        jFormattedTextFieldHoraSaida.setText(jTable1.getValueAt(indiceLinha, 2) + "");
+        jFormattedTextFieldHoraExtra.setText(jTable1.getValueAt(indiceLinha, 4) + "");
+        jTextFieldStatus.setText(jTable1.getValueAt(indiceLinha, 3).toString());
+        jFormattedTextFieldData.setText(jTable1.getValueAt(indiceLinha, 5).toString());
+        jTextAreaDescricao.setText(jTable1.getValueAt(indiceLinha, 6).toString());
+
+        jComboBoxFuncionario.setEnabled(true);
+        jFormattedTextFieldHoraEntrada.setEnabled(true);
+        jFormattedTextFieldHoraSaida.setEnabled(true);
+        jFormattedTextFieldHoraExtra.setEnabled(false);
+        jTextFieldStatus.setEnabled(false);
         jTextAreaDescricao.setEnabled(true);
 
-        jButtonAdicionar.setEnabled(true);
-        jButtonConfirmar.setEnabled(true);
+        jButtonAdicionar.setEnabled(false);
+        jButtonConfirmar.setEnabled(false);
+        jButtonCancelar.setEnabled(true);
+        jButtonAtualizar.setEnabled(true);
+        jButtonExcluir.setEnabled(true);
 
 
     }//GEN-LAST:event_jTable1MouseClicked
@@ -650,7 +703,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
         jComboBoxFuncionario.setEnabled(false);
         jFormattedTextFieldHoraEntrada.setEnabled(false);
-        
+
         jFormattedTextFieldHoraSaida.setEnabled(false);
         jFormattedTextFieldHoraExtra.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
@@ -658,7 +711,7 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
         jComboBoxFuncionario.setSelectedItem("Selecione um funcionário");
         jFormattedTextFieldHoraEntrada.setText("");
-        
+
         jFormattedTextFieldHoraSaida.setText("");
         jFormattedTextFieldHoraExtra.setText("");
         jFormattedTextFieldData.setText("");
@@ -668,6 +721,113 @@ public class TelaHoras extends javax.swing.JInternalFrame {
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         // TODO add your handling code here:
+
+        ControleDAO dao = new ControleDAO();
+        Controle control = new Controle();
+        HoraUtil util = new HoraUtil();
+
+        if (jComboBoxFuncionario.getSelectedItem().equals("Selecione um funcioário") || jFormattedTextFieldHoraEntrada.getText().isEmpty()
+                || jFormattedTextFieldHoraSaida.getText().isEmpty() || jFormattedTextFieldData.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Campos obrigatórios vazios", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+            Date dataInicial = null;
+            Date dataFinal = null;
+
+            try {
+
+                dataInicial = format.parse(jFormattedTextFieldData.getText() + " " + jFormattedTextFieldHoraEntrada.getText());
+                dataFinal = format.parse(jFormattedTextFieldData.getText() + " " + jFormattedTextFieldHoraSaida.getText());
+
+                Timestamp inicialStamp = new Timestamp(dataInicial.getTime());
+                Timestamp finalStamp = new Timestamp(dataFinal.getTime());
+
+                control.setHoraEntrada(inicialStamp);
+                control.setHoraSaida(finalStamp);
+
+                DateTime dataHoraEntrada = new DateTime(inicialStamp);
+                DateTime dataHoraSaida = new DateTime(finalStamp);
+
+                Period tempoTrabalhado = new Period(dataHoraEntrada, dataHoraSaida);
+
+                int horaLocal = tempoTrabalhado.getMinutes()
+                        + tempoTrabalhado.getHours() * 60
+                        + tempoTrabalhado.getDays() * 1440;
+
+                int hora = horaLocal - 540;
+
+                control.setHoraExtra(hora);
+                
+                control.setStatus(util.informaAtraso(horaLocal) + "");
+                control.setDescricao(jTextAreaDescricao.getText());
+
+                if (dao.update(control)) {
+
+                    JOptionPane.showMessageDialog(null, "Ponto Atualizado com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+
+                    jButtonAdicionar.setEnabled(true);
+                    jButtonConfirmar.setEnabled(false);
+                    jButtonCancelar.setEnabled(false);
+                    jButtonAtualizar.setEnabled(false);
+                    jButtonExcluir.setEnabled(false);
+
+                    jComboBoxFuncionario.setEnabled(false);
+                    jFormattedTextFieldHoraEntrada.setEnabled(false);
+
+                    jFormattedTextFieldHoraSaida.setEnabled(false);
+                    jFormattedTextFieldHoraExtra.setEnabled(false);
+                    jFormattedTextFieldData.setEnabled(false);
+                    jTextAreaDescricao.setEnabled(false);
+
+                    jComboBoxFuncionario.setSelectedItem("Selecione um funcionário");
+                    jFormattedTextFieldHoraEntrada.setText("");
+
+                    jFormattedTextFieldHoraSaida.setText("");
+                    jFormattedTextFieldHoraExtra.setText("");
+                    jFormattedTextFieldData.setText("");
+                    jTextAreaDescricao.setText("");
+
+                    //========================
+                    //--Tabela
+                    this.tabelaControle = new TableModelControle();
+                    this.jTable1.setModel(tabelaControle);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Erro ao Atualizar.", "Atenção", JOptionPane.ERROR_MESSAGE);
+
+                    jButtonAdicionar.setEnabled(true);
+                    jButtonConfirmar.setEnabled(false);
+                    jButtonCancelar.setEnabled(false);
+                    jButtonAtualizar.setEnabled(false);
+                    jButtonExcluir.setEnabled(false);
+
+                    jComboBoxFuncionario.setEnabled(false);
+                    jFormattedTextFieldHoraEntrada.setEnabled(false);
+
+                    jFormattedTextFieldHoraSaida.setEnabled(false);
+                    jFormattedTextFieldHoraExtra.setEnabled(false);
+                    jFormattedTextFieldData.setEnabled(false);
+                    jTextAreaDescricao.setEnabled(false);
+
+                    jComboBoxFuncionario.setSelectedItem("Selecione um funcionário");
+                    jFormattedTextFieldHoraEntrada.setText("");
+
+                    jFormattedTextFieldHoraSaida.setText("");
+                    jFormattedTextFieldHoraExtra.setText("");
+                    jFormattedTextFieldData.setText("");
+                    jTextAreaDescricao.setText("");
+                }
+
+            } catch (Exception e) {
+            }
+        }
+
+
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
